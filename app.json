@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Kasengo",
+    "name": "Casengo",
     "slug": "Kasengo",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -13,10 +13,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/Casengo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.russelharv.Kasengo"
+      "package": "com.russelharv.Casengo"
     },
     "web": {
       "bundler": "metro",
@@ -28,10 +28,10 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "image": "./assets/images/Casengo.png",
+          "resizeMode": "cover",
+          "backgroundColor": "#ffffff",
+          "enableFullScreenImage_legacy": true
         }
       ]
     ],
