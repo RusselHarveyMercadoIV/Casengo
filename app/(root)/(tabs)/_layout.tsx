@@ -7,17 +7,19 @@ import icons from "@/constants/icons";
 
 const TabIcon = ({
   focused,
+  color,
   icon,
 }: //   title,
 {
   focused: boolean;
+  color: string;
   icon: any;
   //   title: string;
 }) => (
   <View className="flex-1 mt-3 flex flex-col items-center">
     <Image
       source={icon}
-      tintColor={focused ? "#ed7d2d" : "#9095a0"}
+      tintColor={color}
       resizeMode="contain"
       className="size-9"
     />
@@ -37,10 +39,10 @@ const TabsLayout = () => {
       screenOptions={{
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: "white",
+          // backgroundColor: "white",
           position: "absolute",
-          borderTopColor: "#0061FF1A",
-          borderTopWidth: 1,
+          // borderTopColor: "#0061FF1A",
+          // borderTopWidth: 1,
           minHeight: 70,
         },
       }}
@@ -54,6 +56,7 @@ const TabsLayout = () => {
             <TabIcon
               icon={icons.home}
               focused={focused}
+              color="#9095a0"
               //  title="Home"
             />
           ),
@@ -68,6 +71,7 @@ const TabsLayout = () => {
             <TabIcon
               icon={icons.challenge}
               focused={focused}
+              color="#ed7d2d"
               //   title="Challenge"
             />
           ),
@@ -82,6 +86,7 @@ const TabsLayout = () => {
             <TabIcon
               icon={icons.trophy}
               focused={focused}
+              color="#efb034"
               //   title="Leaderboard"
             />
           ),

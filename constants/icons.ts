@@ -34,6 +34,9 @@ import edit from "@/assets/icons/edit.png";
 import challenge from "@/assets/icons/challenge.png";
 import trophy from "@/assets/icons/trophy.png";
 import facebook from "@/assets/icons/facebook.png";
+import more from "@/assets/icons/more.png";
+import flame from "@/assets/icons/flame.png";
+import electric from "@/assets/icons/electric.png";
 
 export default {
   google,
@@ -72,4 +75,7 @@ export default {
   challenge,
   trophy,
   facebook,
+  more,
+  flame,
+  electric,
 };
