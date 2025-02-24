@@ -14,6 +14,7 @@ import icons from "@/constants/icons";
 import { logout } from "@/lib/appwrite";
 import { useGlobalContext } from "@/lib/global-provider";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { topics } from "@/constants/topics";
 
 // Define styles for the menu items
 const styles = StyleSheet.create({
@@ -54,22 +55,6 @@ export default function Index() {
         backgroundColor: "white",
       }}
     >
-      {/* Welcome message */}
-      <View className="absolute top-20 flex flex-col gap-10 w-[300px] justify-center">
-        <PText className="text-xl  text-center">
-          Welcome back, Student nurse!
-        </PText>
-        <TouchableOpacity className="border border-[#ed7d2d] border-[3px] rounded-xl py-[24px] flex flex-row gap-2 items-center px-[20px] bg-[#fff3ea]">
-          <Image source={icons.electric} className="w-[48px] h-[48px]" />
-          <PText className="text-[24px] text-[#ed7d2d]">Smart Session</PText>
-        </TouchableOpacity>
-      </View>
-
-      <View className="absolute top-4 left-8 flex flex-row gap-1 items-center">
-        <Image source={icons.flame} className="w-[28px] h-[28px]" />
-        <PText className="text-lg text-[#ed7d2d] font-bold">7</PText>
-      </View>
-
       {/* More button */}
       <Pressable
         onPress={() => setIsModalVisible(true)}
@@ -143,6 +128,40 @@ export default function Index() {
           </View>
         </Pressable>
       </Modal>
+
+      {/* main content */}
+      <View className="absolute top-20 flex flex-col gap-10 w-[300px] justify-center">
+        <PText className="text-xl  text-center">
+          Welcome back, Student nurse!
+        </PText>
+        <TouchableOpacity className="border border-[#ed7d2d] border-[3px] rounded-xl py-[24px] flex flex-row gap-2 items-center px-[20px] bg-[#fff3ea]">
+          <Image source={icons.electric} className="w-[48px] h-[48px]" />
+          <PText className="text-[24px] text-[#ed7d2d]">Smart Session</PText>
+        </TouchableOpacity>
+      </View>
+
+      <View className="absolute top-4 left-8 flex flex-row gap-1 items-center">
+        <Image source={icons.flame} className="w-[28px] h-[28px]" />
+        <PText className="text-lg text-[#ed7d2d] font-bold">7</PText>
+      </View>
+
+      {/* Topics */}
+      <View className="flex w-full gap-5 px-8">
+        <PText>Topics</PText>
+        <View className="flex flex-row flex-wrap gap-5 justify-between">
+          {topics.map((topic) => {
+            return (
+              <View
+                key={topic.id}
+                className="flex flex-row gap-2 justify-center items-center w-[100px] h-[100px] border border-[#9095a0] border-[1px] rounded-xl p-2"
+              >
+                {/* <Image source={topic.icon} className="w-[28px] h-[28px]" /> */}
+                <PText>{topic.title}</PText>
+              </View>
+            );
+          })}
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
