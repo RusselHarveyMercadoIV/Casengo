@@ -16,7 +16,7 @@
         "foregroundImage": "./assets/images/Casengo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.russelharv.Casengo"
+      "package": "com.russelharv.casengo"
     },
     "web": {
       "bundler": "metro",
