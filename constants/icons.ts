@@ -33,6 +33,7 @@ import location from "@/assets/icons/location.png";
 import edit from "@/assets/icons/edit.png";
 import challenge from "@/assets/icons/challenge.png";
 import trophy from "@/assets/icons/trophy.png";
+import facebook from "@/assets/icons/facebook.png";
 
 export default {
   google,
@@ -70,4 +71,5 @@ export default {
   edit,
   challenge,
   trophy,
+  facebook,
 };

@@ -29,7 +29,7 @@ export default function SignIn() {
         <View className="flex justify-center items-center mt-[20rem]">
           <PText className="text-white text-6xl font-bold">Casengo</PText>
         </View>
-        <View className="px-10 py-10 bg-white w-full h-[300px] rounded-2xl">
+        <View className="px-10 py-10 bg-white w-full h-[350px] rounded-2xl">
           <PText className=" text-slate-500 text-center mt-2">
             WELCOME TO CASENGO
           </PText>
@@ -37,7 +37,7 @@ export default function SignIn() {
             Let's Get You Started!
           </PText>
           <PText className="text-lg text-center mt-12 text-slate-500">
-            Login to Casengo with Google
+            Choose your login Option
           </PText>
           <TouchableOpacity
             style={{
@@ -47,16 +47,36 @@ export default function SignIn() {
               shadowRadius: 1,
               elevation: 3,
             }}
-            className="bg-white w-full h-12 mt-4 rounded-xl justify-center items-center"
+            className="bg-white border border-neutral-400 w-full h-14 mt-4 rounded-xl justify-center items-center"
             onPress={handleLogin}
           >
-            <View className="flex flex-row justify-center items-center">
+            <View className="flex flex-row justify- gap-5 items-center ">
               <Image
                 source={icons.google} // Ensure this is require() or { uri: string }
-                className="w-5 h-5"
+                className="w-8 h-8"
                 resizeMode="contain"
               />
-              <PText className="text-lg ml-4">Continue with Google</PText>
+              <PText className="text-lg w-52">Continue with Google</PText>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              shadowColor: "black",
+              shadowOffset: { width: -2, height: 6 },
+              shadowOpacity: 1,
+              shadowRadius: 1,
+              elevation: 3,
+            }}
+            className="bg-white border border-neutral-400 w-full h-14 mt-6 rounded-xl justify-center items-center"
+            onPress={handleLogin}
+          >
+            <View className="flex flex-row justify- gap-5 items-center ">
+              <Image
+                source={icons.facebook} // Ensure this is require() or { uri: string }
+                className="w-8 h-8"
+                resizeMode="contain"
+              />
+              <PText className="text-lg w-52">Continue with Facebook</PText>
             </View>
           </TouchableOpacity>
         </View>

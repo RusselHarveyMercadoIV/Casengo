@@ -13,14 +13,15 @@ export const client = new Client();
 client
   .setEndpoint(config.endpoint!)
   .setProject(config.projectId!)
-  .setPlatform(config.platform!);
+  .setPlatform(config.platform);
 
 export const avatar = new Avatars(client);
 export const account = new Account(client);
 
 export async function login() {
   try {
-    const redirectUri = Linking.createURL("/");
+    const redirectUri = Linking.createURL("");
+    // const redirectUri = "http://localhost:8081/";
 
     console.log(redirectUri);
 
@@ -33,10 +34,12 @@ export async function login() {
 
     if (!response) throw new Error("Failed to login 1");
 
-    const browserResult = await WebBrowser?.openAuthSessionAsync(
+    const browserResult = await WebBrowser.openAuthSessionAsync(
       response.toString(),
       redirectUri
     );
+
+    console.log(browserResult);
 
     if (browserResult?.type !== "success") throw new Error("Failed to login 2");
 
