@@ -5,7 +5,6 @@ import {
   Image,
   Modal,
   Pressable,
-  StyleSheet,
   TouchableOpacity,
   Alert,
   ScrollView,
@@ -18,23 +17,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { topics } from "@/constants/topics";
 import { curatedLearnings } from "@/constants/curated-learnings";
 
-// Define styles for the menu items
-const styles = StyleSheet.create({
-  menuItemText: {
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
-  },
-  signoutText: {
-    padding: 10,
-  },
-});
-
 export default function Index() {
-  // State to control modal visibility
+  // State for modal visibility
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { user, refetch } = useGlobalContext();
 
+  // Handle logout functionality
   const handleLogout = async () => {
     try {
       const result = await logout();
@@ -44,135 +32,134 @@ export default function Index() {
         refetch();
       }
     } catch (error) {
-      Alert.alert("There's a problem signout out.");
+      Alert.alert("There's a problem signing out.");
     }
   };
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "white",
-      }}
-    >
-      {/* More button */}
-      <Pressable
-        onPress={() => setIsModalVisible(true)}
-        // style={{ position: "absolute", top: 16, right: 32 }}
-        className="absolute top-4 right-8"
-      >
-        <Image source={icons.more} style={{ width: 28, height: 28 }} />
-      </Pressable>
+    <SafeAreaView className="flex-1 bg-white">
+      {/* Header Section */}
+      <View className="flex-row justify-between items-center px-8 py-4">
+        {/* Streak Counter */}
+        <View className="flex-row items-center">
+          <Image
+            source={icons.flame}
+            className="w-7 h-7"
+            resizeMode="contain"
+          />
+          <PText className="text-lg text-[#ed7d2d] font-bold ml-1">7</PText>
+        </View>
+        {/* More Button */}
+        <Pressable
+          onPress={() => setIsModalVisible(true)}
+          accessibilityLabel="More options"
+        >
+          <Image source={icons.more} className="w-7 h-7" resizeMode="contain" />
+        </Pressable>
+      </View>
 
-      {/* Modal for navigation menu */}
+      {/* Scrollable Content */}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* Main Content */}
+        <View className="flex-col gap-10 w-full items-center mt-5">
+          <PText className="text-xl text-center">
+            Welcome back, Student nurse!
+          </PText>
+          <TouchableOpacity
+            className="w-[300px] border border-[#ed7d2d] border-[3px] rounded-xl py-5 flex-row gap-2 items-center px-5 bg-[#fff3ea]"
+            accessibilityLabel="Start Smart Session"
+          >
+            <Image
+              source={icons.electric}
+              className="w-12 h-12"
+              resizeMode="contain"
+            />
+            <PText className="text-2xl text-[#ed7d2d]">Smart Session</PText>
+          </TouchableOpacity>
+        </View>
+
+        {/* Topics Section */}
+        <View className="w-full gap-5 px-8 mt-10">
+          <PText className="text-lg text-[#323842]">Topics</PText>
+          <View className="flex-row flex-wrap gap-5 justify-between">
+            {topics.map((topic) => (
+              <View
+                key={topic.id}
+                className="flex-row gap-2 justify-center items-center w-[100px] h-[100px] border border-[#9095a0] rounded-xl p-2"
+              >
+                {/* Uncomment and use topic.icon if available */}
+                {/* <Image source={topic.icon} className="w-7 h-7" resizeMode="contain" /> */}
+                <PText>{topic.title}</PText>
+              </View>
+            ))}
+          </View>
+        </View>
+
+        {/* Curated Learnings Section */}
+        <View className="w-full gap-5 px-8 mt-10 mb-32">
+          <PText className="text-lg text-[#323842]">Curated Learnings</PText>
+          <View className="flex-row flex-wrap gap-5 justify-between">
+            {curatedLearnings.map((item) => (
+              <View
+                key={item.id}
+                className="flex-col gap-2 justify-around items-center w-[160px] h-[200px] border border-[#9095a0] rounded-xl p-2"
+              >
+                <PText className="text-[#ed7d2d] text-3xl font-bold">
+                  {item.title}
+                </PText>
+                <PText className="text-[#ed7d2d] text-xl font-bold">
+                  Course
+                </PText>
+              </View>
+            ))}
+          </View>
+        </View>
+      </ScrollView>
+
+      {/* Navigation Modal */}
       <Modal
         visible={isModalVisible}
         transparent={true}
         onRequestClose={() => setIsModalVisible(false)}
       >
-        {/* Background overlay */}
         <Pressable
-          style={{
-            flex: 1,
-            backgroundColor: "rgba(0,0,0,0.5)",
-          }}
+          className="flex-1 bg-black/50"
           onPress={() => setIsModalVisible(false)}
         >
-          {/* Menu container */}
-          <View className="absolute top-12 right-8 p-10 w-[200px]  bg-white rounded-xl flex justify-around items-center gap-5 ">
-            <View className="flex flex-col gap-2 justify-center items-center">
+          <View className="absolute top-12 right-4 w-48 bg-white rounded-xl p-4 flex-col items-center gap-4">
+            {/* User Info */}
+            <View className="flex-col items-center gap-2">
               <Image
                 source={{ uri: user?.avatar }}
-                className="size-10 relative rounded-full"
+                className="w-10 h-10 rounded-full"
+                resizeMode="cover"
               />
-              <PText className="text-xs">{user?.name}</PText>
+              <PText className="text-sm">{user?.name}</PText>
             </View>
-            <View className="w-full border border-slate-100" />
-
-            {/* Profile link */}
-            <View className="flex gap-5 justify-center items-center">
+            <View className="w-full border-b border-slate-200" />
+            {/* Menu Items */}
+            <View className="w-full">
               <Link href="/profile">
-                <PText style={styles.menuItemText} className="text-lg">
+                <PText className="text-lg p-2 border-b border-[#ccc]">
                   Profile
                 </PText>
               </Link>
-
-              {/* Settings link */}
               <Link href="/settings">
-                <PText style={styles.menuItemText} className="text-lg">
+                <PText className="text-lg p-2 border-b border-[#ccc]">
                   Settings
                 </PText>
               </Link>
             </View>
-
-            {/* Sign out button */}
+            {/* Sign Out Button */}
             <TouchableOpacity
               onPress={handleLogout}
-              className="rounded-lg bg-red-500"
+              className="w-full bg-red-500 rounded-lg p-2"
             >
-              <PText style={styles.signoutText} className="text-white text-lg">
-                Sign out
-              </PText>
+              <PText className="text-white text-lg text-center">Sign out</PText>
             </TouchableOpacity>
           </View>
         </Pressable>
       </Modal>
-
-      <ScrollView style={{ flex: 1 }}>
-        {/* main content */}
-        <View className="flex flex-col gap-10 w-full justify-center items-center mt-20">
-          <PText className="text-xl  text-center">
-            Welcome back, Student nurse!
-          </PText>
-          <TouchableOpacity className=" w-[300px] border border-[#ed7d2d] border-[3px] rounded-xl py-[24px] flex flex-row gap-2 items-center px-[20px] bg-[#fff3ea]">
-            <Image source={icons.electric} className="w-[48px] h-[48px]" />
-            <PText className="text-[24px] text-[#ed7d2d]">Smart Session</PText>
-          </TouchableOpacity>
-        </View>
-
-        <View className="absolute top-4 left-8 flex flex-row gap-1 items-center">
-          <Image source={icons.flame} className="w-[28px] h-[28px]" />
-          <PText className="text-lg text-[#ed7d2d] font-bold">7</PText>
-        </View>
-
-        {/* Topics */}
-        <View className="flex w-full gap-5 px-8 mt-20">
-          <PText>Topics</PText>
-          <View className="flex flex-row flex-wrap gap-5 justify-between">
-            {topics.map((topic) => {
-              return (
-                <View
-                  key={topic.id}
-                  className="flex flex-row gap-2 justify-center items-center w-[100px] h-[100px] border border-[#9095a0] border-[1px] rounded-xl p-2"
-                >
-                  {/* <Image source={topic.icon} className="w-[28px] h-[28px]" /> */}
-                  <PText>{topic.title}</PText>
-                </View>
-              );
-            })}
-          </View>
-        </View>
-
-        {/* Curated Learnings */}
-        <View className="flex w-full gap-5 px-8 mt-20 mb-32">
-          <PText>Curated Learnings</PText>
-          <View className="flex flex-row flex-wrap gap-5 justify-between">
-            {curatedLearnings.map((item) => {
-              return (
-                <View
-                  key={item.id}
-                  className="flex flex-row gap-2 justify-center items-center w-[150px] h-[200px] border border-[#9095a0] border-[1px] rounded-xl p-2"
-                >
-                  {/* <Image source={topic.icon} className="w-[28px] h-[28px]" /> */}
-                  <PText>{item.title}</PText>
-                </View>
-              );
-            })}
-          </View>
-        </View>
-      </ScrollView>
     </SafeAreaView>
   );
 }
