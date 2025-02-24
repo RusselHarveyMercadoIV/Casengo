@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Alert,
+  ScrollView,
 } from "react-native";
 import PText from "../../../components/ui/ptext";
 import icons from "@/constants/icons";
@@ -15,6 +16,7 @@ import { logout } from "@/lib/appwrite";
 import { useGlobalContext } from "@/lib/global-provider";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { topics } from "@/constants/topics";
+import { curatedLearnings } from "@/constants/curated-learnings";
 
 // Define styles for the menu items
 const styles = StyleSheet.create({
@@ -79,18 +81,7 @@ export default function Index() {
           onPress={() => setIsModalVisible(false)}
         >
           {/* Menu container */}
-          <View
-            // style={{
-            //   position: "absolute",
-            //   top: 48, // Position below the more button
-            //   right: 16,
-            //   backgroundColor: "white",
-            //   borderRadius: 5,
-            //   padding: 8,
-            //   width: 150,
-            // }}
-            className="absolute top-12 right-8 p-10 w-[200px]  bg-white rounded-xl flex justify-around items-center gap-5 "
-          >
+          <View className="absolute top-12 right-8 p-10 w-[200px]  bg-white rounded-xl flex justify-around items-center gap-5 ">
             <View className="flex flex-col gap-2 justify-center items-center">
               <Image
                 source={{ uri: user?.avatar }}
@@ -129,39 +120,59 @@ export default function Index() {
         </Pressable>
       </Modal>
 
-      {/* main content */}
-      <View className="absolute top-20 flex flex-col gap-10 w-[300px] justify-center">
-        <PText className="text-xl  text-center">
-          Welcome back, Student nurse!
-        </PText>
-        <TouchableOpacity className="border border-[#ed7d2d] border-[3px] rounded-xl py-[24px] flex flex-row gap-2 items-center px-[20px] bg-[#fff3ea]">
-          <Image source={icons.electric} className="w-[48px] h-[48px]" />
-          <PText className="text-[24px] text-[#ed7d2d]">Smart Session</PText>
-        </TouchableOpacity>
-      </View>
-
-      <View className="absolute top-4 left-8 flex flex-row gap-1 items-center">
-        <Image source={icons.flame} className="w-[28px] h-[28px]" />
-        <PText className="text-lg text-[#ed7d2d] font-bold">7</PText>
-      </View>
-
-      {/* Topics */}
-      <View className="flex w-full gap-5 px-8">
-        <PText>Topics</PText>
-        <View className="flex flex-row flex-wrap gap-5 justify-between">
-          {topics.map((topic) => {
-            return (
-              <View
-                key={topic.id}
-                className="flex flex-row gap-2 justify-center items-center w-[100px] h-[100px] border border-[#9095a0] border-[1px] rounded-xl p-2"
-              >
-                {/* <Image source={topic.icon} className="w-[28px] h-[28px]" /> */}
-                <PText>{topic.title}</PText>
-              </View>
-            );
-          })}
+      <ScrollView style={{ flex: 1 }}>
+        {/* main content */}
+        <View className="flex flex-col gap-10 w-full justify-center items-center mt-20">
+          <PText className="text-xl  text-center">
+            Welcome back, Student nurse!
+          </PText>
+          <TouchableOpacity className=" w-[300px] border border-[#ed7d2d] border-[3px] rounded-xl py-[24px] flex flex-row gap-2 items-center px-[20px] bg-[#fff3ea]">
+            <Image source={icons.electric} className="w-[48px] h-[48px]" />
+            <PText className="text-[24px] text-[#ed7d2d]">Smart Session</PText>
+          </TouchableOpacity>
         </View>
-      </View>
+
+        <View className="absolute top-4 left-8 flex flex-row gap-1 items-center">
+          <Image source={icons.flame} className="w-[28px] h-[28px]" />
+          <PText className="text-lg text-[#ed7d2d] font-bold">7</PText>
+        </View>
+
+        {/* Topics */}
+        <View className="flex w-full gap-5 px-8 mt-20">
+          <PText>Topics</PText>
+          <View className="flex flex-row flex-wrap gap-5 justify-between">
+            {topics.map((topic) => {
+              return (
+                <View
+                  key={topic.id}
+                  className="flex flex-row gap-2 justify-center items-center w-[100px] h-[100px] border border-[#9095a0] border-[1px] rounded-xl p-2"
+                >
+                  {/* <Image source={topic.icon} className="w-[28px] h-[28px]" /> */}
+                  <PText>{topic.title}</PText>
+                </View>
+              );
+            })}
+          </View>
+        </View>
+
+        {/* Curated Learnings */}
+        <View className="flex w-full gap-5 px-8 mt-20 mb-32">
+          <PText>Curated Learnings</PText>
+          <View className="flex flex-row flex-wrap gap-5 justify-between">
+            {curatedLearnings.map((item) => {
+              return (
+                <View
+                  key={item.id}
+                  className="flex flex-row gap-2 justify-center items-center w-[150px] h-[200px] border border-[#9095a0] border-[1px] rounded-xl p-2"
+                >
+                  {/* <Image source={topic.icon} className="w-[28px] h-[28px]" /> */}
+                  <PText>{item.title}</PText>
+                </View>
+              );
+            })}
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
