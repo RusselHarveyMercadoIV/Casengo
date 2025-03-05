@@ -9,6 +9,9 @@ import { login } from "@/lib/appwrite";
 import { useGlobalContext } from "@/lib/global-provider";
 import { Redirect } from "expo-router";
 
+import OrangeButtom from "../assets/images/button-orange-1.png";
+import WhiteButtom from "../assets/images/button-white-1.png";
+
 const styles = StyleSheet.create({
   boxShadow: {
     shadowColor: "#0000FF", // Blue shadow
@@ -19,24 +22,24 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function SignIn() {
-  const { refetch, loading, isLoggedIn } = useGlobalContext();
+export default function Start() {
+  const { loading, isLoggedIn } = useGlobalContext();
 
   if (!loading && isLoggedIn) return <Redirect href={"/"} />;
 
-  const handleLogin = async () => {
-    const result = await login();
+  // const handleLogin = async () => {
+  //   const result = await login();
 
-    if (result) {
-      refetch();
-    } else {
-      Alert.alert("Error", "Failed to login");
-    }
-  };
+  //   if (result) {
+  //     refetch();
+  //   } else {
+  //     Alert.alert("Error", "Failed to login");
+  //   }
+  // };
 
   return (
     <SafeAreaView className="bg-white h-full">
-      <ScrollView contentContainerClassName="flex justify-between items-center h-full">
+      <ScrollView contentContainerClassName="flex justify-center items-center h-full">
         {/* <View className="flex justify-center items-center mt-[20rem]">
           <PText className="text-white text-6xl ">Casengo</PText>
         </View> */}
@@ -91,14 +94,58 @@ export default function SignIn() {
             </View>
           </TouchableOpacity>
         </View> */}
-        <View>
-          <PText>Already have an account?</PText>
-          <TouchableOpacity
-            style={styles.boxShadow}
-            className="bg-white border border-neutral-400 w-full h-14 mt-6 rounded-xl justify-center items-center"
-          >
-            <PText>SIGN IN</PText>
-          </TouchableOpacity>
+        <View className="flex gap-14 mb-14">
+          <View className="relative flex gap-10 justify-center items-center">
+            <PText
+              className="text-2xl text-[#323842]"
+              style={{
+                textShadowColor: "#323842",
+                textShadowOffset: { width: 0, height: 0 },
+                textShadowRadius: 0.5,
+              }}
+            >
+              Already have an account?
+            </PText>
+            <Image
+              source={OrangeButtom} // Ensure this is require() or { uri: string }
+              className=" w-[400px] h-[65px]"
+              resizeMode="contain"
+            />
+            <TouchableOpacity
+              // style={styles.boxShadow}
+              // className="bg-white border border-neutral-400 w-full h-14 mt-6 rounded-xl justify-center items-center"
+              className=" w-[400px] h-[65px] absolute top-[60px] flex justify-center items-center"
+            >
+              <PText className="text-white text-2xl font-bold">SIGN IN</PText>
+            </TouchableOpacity>
+          </View>
+          <View className="border border-1 border-[#dee1e6]" />
+          <View className="relative flex gap-10 justify-center items-center">
+            <PText
+              className="text-2xl text-[#323842] line-30 font-[ABeeZee]"
+              style={{
+                textShadowColor: "#323842",
+                textShadowOffset: { width: 0, height: 0 },
+                textShadowRadius: 0.5,
+              }}
+            >
+              New to Casengo?
+            </PText>
+            <Image
+              source={WhiteButtom} // Ensure this is require() or { uri: string }
+              className=" w-[400px] h-[65px]"
+              resizeMode="contain"
+            />
+            <TouchableOpacity
+              // style={styles.boxShadow}
+              // className="bg-white border border-neutral-400 w-full h-14 mt-6 rounded-xl justify-center items-center"
+              className=" w-[400px] h-[65px] absolute top-[60px] flex justify-center items-center"
+            >
+              <PText className="text-2xl text-[#ed7d2d] font-bold">
+                GET STARTED
+              </PText>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
