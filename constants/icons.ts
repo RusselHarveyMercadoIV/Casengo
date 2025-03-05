@@ -37,6 +37,7 @@ import facebook from "@/assets/icons/facebook.png";
 import more from "@/assets/icons/more.png";
 import flame from "@/assets/icons/flame.png";
 import electric from "@/assets/icons/electric.png";
+import leftArrow from "@/assets/icons/left-arrow.png";
 
 export default {
   google,
@@ -78,4 +79,5 @@ export default {
   more,
   flame,
   electric,
+  leftArrow,
 };
