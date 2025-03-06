@@ -76,11 +76,16 @@ export default function Start() {
     </View>
   );
 
+  if (currentStep > 1) {
+    content = <View></View>;
+  }
+
   if (currentStep === 1) {
     content = (
-      <ScrollView contentContainerClassName="flex h-[70%] justify-around">
+      <ScrollView contentContainerClassName="flex ">
         <View className="flex gap-10">
           <Button
+            key={"p1-1"}
             className="flex-row gap-5 py-4 px-8 justify-start items-center"
             text="PNLE"
           >
@@ -94,6 +99,7 @@ export default function Start() {
             <PText className="text-2xl text-[#9095a0]">Coming soon...</PText>
             <View className="flex gap-5">
               <Button
+                key={"p1-2"}
                 className="flex-row gap-5 py-4 px-8 justify-start items-center w-[350px] opacity-40"
                 disabled={true}
                 text="NCLEX - RN"
@@ -104,6 +110,7 @@ export default function Start() {
                 />
               </Button>
               <Button
+                key={"p1-3"}
                 className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px] opacity-40"
                 disabled={true}
                 text="NCLEX - PN"
@@ -119,8 +126,184 @@ export default function Start() {
       </ScrollView>
     );
   }
-  if (currentStep > 1) {
-    content = <View></View>;
+  if (currentStep === 2) {
+    content = (
+      <ScrollView contentContainerClassName="flex h-full ">
+        <View className="flex justify-center items-center  w-[350px]">
+          <View className="flex gap-6">
+            <Button
+              key={"p2-1"}
+              className="flex-row gap-5 py-4 px-8 justify-start items-center w-[350px]"
+              text="Google Search"
+            >
+              <Image source={icons.google} className="w-8 h-8 rounded-2xl  " />
+            </Button>
+            <Button
+              key={"p2-2"}
+              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
+              text="Facebook"
+            >
+              <Image
+                source={icons.facebook}
+                className="w-8 h-8 rounded-2xl  "
+              />
+            </Button>
+            <Button
+              key={"p2-3"}
+              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
+              text="Youtube"
+            >
+              <Image source={icons.youtube} className="w-8 h-8 rounded-2xl  " />
+            </Button>
+            <Button
+              key={"p2-4"}
+              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
+              text="Friends/family"
+            >
+              <Image source={icons.people} className="w-8 h-8 rounded-2xl  " />
+            </Button>
+            <Button
+              key={"p2-5"}
+              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
+              text="Others"
+            >
+              <Image source={icons.more} className="w-8 h-8 rounded-2xl  " />
+            </Button>
+          </View>
+        </View>
+      </ScrollView>
+    );
+  }
+
+  if (currentStep === 3) {
+    content = (
+      <ScrollView contentContainerClassName="flex h-full ">
+        <View className="flex justify-center items-center  w-[350px]">
+          <View className="flex gap-6">
+            <Button
+              key={"p3-1"}
+              className="flex-row gap-5 py-4 px-8 justify-start items-center w-[350px]"
+              text="Freshman"
+            >
+              <Image source={icons.syringe} className="w-8 h-8   " />
+            </Button>
+            <Button
+              key={"p3-2"}
+              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
+              text="Sophomore"
+            >
+              <Image source={icons.nursecap} className="w-8 h-8   " />
+            </Button>
+            <Button
+              key={"p3-3"}
+              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
+              text="Junior"
+            >
+              <Image source={icons.stethoscope} className="w-8 h-8  " />
+            </Button>
+            <Button
+              key={"p3-4"}
+              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
+              text="Senior"
+            >
+              <Image source={icons.nurse} className="w-8 h-8 " />
+            </Button>
+            <Button
+              key={"p3-5"}
+              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
+              text="Recent Graduate"
+            >
+              <Image source={icons.note} className="w-8 h-8  " />
+            </Button>
+          </View>
+        </View>
+      </ScrollView>
+    );
+  }
+
+  if (currentStep === 4) {
+    content = (
+      <ScrollView contentContainerClassName="flex h-full ">
+        <View className="flex justify-center items-center  w-[350px]">
+          <View className="flex gap-6">
+            <Button
+              key={"p4-1"}
+              className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
+              text="Build foundational knowledge"
+            ></Button>
+            <Button
+              key={"p4-2"}
+              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
+              text="Strengthen clinical skills"
+            ></Button>
+            <Button
+              key={"p4-3"}
+              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
+              text="Prepare for PNLE"
+            ></Button>
+          </View>
+        </View>
+      </ScrollView>
+    );
+  }
+
+  if (currentStep === 5) {
+    content = (
+      <ScrollView contentContainerClassName="flex h-full ">
+        <View className="flex justify-center items-center  w-[350px]">
+          <View className="flex gap-6">
+            <Button
+              key={"p4-1"}
+              className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
+              text="3 min / day"
+              subText="Casual"
+            ></Button>
+            <Button
+              key={"p4-2"}
+              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
+              text="10 min / day"
+              subText="Regular"
+            ></Button>
+            <Button
+              key={"p4-3"}
+              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
+              text="15 min / day"
+              subText="Serious"
+            ></Button>
+            <Button
+              key={"p4-3"}
+              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
+              text="30 min / day"
+              subText="Intense"
+            ></Button>
+          </View>
+        </View>
+      </ScrollView>
+    );
+  }
+
+  if (currentStep === 6) {
+    content = (
+      <ScrollView contentContainerClassName="flex h-full ">
+        <View className="flex justify-center items-center  w-[350px]">
+          <View className="flex gap-6">
+            <Button
+              key={"p4-1"}
+              className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
+              text="Take the Assessment"
+              description="Let's make a personalized learning for you"
+              supText="RECOMMENDED"
+            ></Button>
+            <Button
+              key={"p4-1"}
+              className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
+              text="Start from scatch!"
+              description="Good for people starting out."
+            ></Button>
+          </View>
+        </View>
+      </ScrollView>
+    );
   }
 
   return (

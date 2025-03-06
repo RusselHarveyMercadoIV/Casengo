@@ -5,6 +5,9 @@ import PText from "./ui/ptext";
 type ButtonTypes = {
   className: string;
   text: string;
+  description?: string;
+  subText?: string;
+  supText?: string;
   disabled?: boolean;
   children?: React.ReactNode;
 };
@@ -12,6 +15,9 @@ type ButtonTypes = {
 export default function Button({
   className,
   text,
+  description,
+  subText,
+  supText,
   children,
   disabled = false,
   ...props
@@ -34,19 +40,43 @@ export default function Button({
         disabled={disabled}
         {...props}
       >
+        {supText && (
+          <PText className="absolute  top-0 right-0 bg-[#1ac052] text-white py-2 px-3 rounded-xl">
+            {supText}
+          </PText>
+        )}
         {children}
-        <PText
-          className={`text-xl  line-30 font-[ABeeZee] ${
-            isPressed ? "text-[#ed7d2d]" : "text-[#323842]"
-          }`}
-          style={{
-            textShadowColor: shadowColor,
-            textShadowOffset: { width: 0, height: 0 },
-            textShadowRadius: 1,
-          }}
-        >
-          {text}
-        </PText>
+        <View className="flex gap-5">
+          <PText
+            className={`text-xl  line-30 font-[ABeeZee] ${
+              isPressed ? "text-[#ed7d2d]" : "text-[#323842]"
+            }`}
+            style={{
+              textShadowColor: shadowColor,
+              textShadowOffset: { width: 0, height: 0 },
+              textShadowRadius: 1,
+            }}
+          >
+            {text}
+          </PText>
+          {description && (
+            <PText
+              className={` ${isPressed ? "text-[#ed7d2d]" : "text-[#9095a0]"} `}
+            >
+              {description}
+            </PText>
+          )}
+        </View>
+
+        {subText && (
+          <PText
+            className={`absolute right-6 ${
+              isPressed ? "text-[#ed7d2d]" : "text-[#dee1e6]"
+            } `}
+          >
+            {subText}
+          </PText>
+        )}
       </TouchableOpacity>
     </View>
   );
