@@ -291,7 +291,7 @@ export default function Start() {
               key={"p6-1"}
               className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
               text="Take the Assessment"
-              description="Let's make a personalized learning for you"
+              description="Let's make a personalized learning for you!"
               supText="RECOMMENDED"
             ></Button>
             <Button

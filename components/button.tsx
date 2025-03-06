@@ -41,7 +41,7 @@ export default function Button({
         {...props}
       >
         {supText && (
-          <PText className="absolute  top-0 right-0 bg-[#1ac052] text-white py-2 px-3 rounded-xl">
+          <PText className="absolute  top-0 right-0 bg-[#1ac052] text-white py-2 px-3 rounded-lg">
             {supText}
           </PText>
         )}
