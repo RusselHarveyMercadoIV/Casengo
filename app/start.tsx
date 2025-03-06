@@ -271,7 +271,7 @@ export default function Start() {
               subText="Serious"
             ></Button>
             <Button
-              key={"p5-3"}
+              key={"p5-4"}
               className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
               text="30 min / day"
               subText="Intense"
