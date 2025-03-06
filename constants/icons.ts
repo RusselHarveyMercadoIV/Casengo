@@ -38,8 +38,19 @@ import more from "@/assets/icons/more.png";
 import flame from "@/assets/icons/flame.png";
 import electric from "@/assets/icons/electric.png";
 import leftArrow from "@/assets/icons/left-arrow.png";
+import philippines from "@/assets/icons/philippines.png";
+import america from "@/assets/icons/america.png";
+import youtube from "@/assets/icons/youtube.png";
+import syringe from "@/assets/icons/syringe.png";
+import nursecap from "@/assets/icons/nursecap.png";
+import stethoscope from "@/assets/icons/stethoscope.png";
+import nurse from "@/assets/icons/nurse.png";
+import note from "@/assets/icons/note.png";
 
 export default {
+  note,
+  nurse,
+  stethoscope,
   google,
   home,
   search,
@@ -80,4 +91,9 @@ export default {
   flame,
   electric,
   leftArrow,
+  philippines,
+  america,
+  youtube,
+  syringe,
+  nursecap,
 };
