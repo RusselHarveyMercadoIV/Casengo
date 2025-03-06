@@ -7,11 +7,15 @@ import icons from "@/constants/icons";
 import { useGlobalContext } from "@/lib/global-provider";
 import { Redirect } from "expo-router";
 
-import OrangeButtom from "../assets/images/button-orange-1.png";
-import WhiteButtom from "../assets/images/button-white-1.png";
+import { headers } from "../constants/start";
+
+import OrangeButton from "../assets/images/button-orange-1.png";
+import WhiteButton from "../assets/images/button-white-1.png";
+import Button from "@/components/button";
 
 export default function Start() {
   const { loading, isLoggedIn } = useGlobalContext();
+  const [formData, setFormData] = useState<{}>();
   const [currentStep, setCurrentStep] = useState<number>(0);
 
   if (!loading && isLoggedIn) return <Redirect href={"/"} />;
@@ -35,7 +39,7 @@ export default function Start() {
           Already have an account?
         </PText>
         <Image
-          source={OrangeButtom}
+          source={OrangeButton}
           className=" w-[350px] h-[65px]"
           resizeMode="contain"
         />
@@ -56,7 +60,7 @@ export default function Start() {
           New to Casengo?
         </PText>
         <Image
-          source={WhiteButtom}
+          source={WhiteButton}
           className=" w-[350px] h-[65px]"
           resizeMode="contain"
         />
@@ -73,7 +77,25 @@ export default function Start() {
   );
 
   if (currentStep >= 1) {
-    content = <View></View>;
+    content = (
+      <View>
+        <PText className="text-2xl">{headers[currentStep - 1].header}</PText>
+        <View>
+          <Button variant="white">
+            <PText
+              className="text-xl text-[#323842] line-30 font-[ABeeZee]"
+              style={{
+                textShadowColor: "#323842",
+                textShadowOffset: { width: 0, height: 0 },
+                textShadowRadius: 0.5,
+              }}
+            >
+              Test
+            </PText>
+          </Button>
+        </View>
+      </View>
+    );
   }
 
   return (
@@ -83,7 +105,7 @@ export default function Start() {
           <View className="relative flex flex-row items-center justify-center w-full">
             <TouchableOpacity
               onPress={() => handleStepChange(-1)}
-              className="absolute w-6 h-6 left-4 top-4"
+              className="absolute w-6 h-6 left-6 top-4"
             >
               <Image source={icons.leftArrow} className="w-6 h-6" />
             </TouchableOpacity>
@@ -130,7 +152,7 @@ export default function Start() {
         {currentStep > 0 && (
           <View className="relative mb-10">
             <Image
-              source={OrangeButtom}
+              source={OrangeButton}
               className=" w-[350px] h-[65px]"
               resizeMode="contain"
             />
