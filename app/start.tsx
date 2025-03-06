@@ -253,25 +253,25 @@ export default function Start() {
         <View className="flex justify-center items-center  w-[350px]">
           <View className="flex gap-6">
             <Button
-              key={"p4-1"}
+              key={"p5-1"}
               className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
               text="3 min / day"
               subText="Casual"
             ></Button>
             <Button
-              key={"p4-2"}
+              key={"p5-2"}
               className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
               text="10 min / day"
               subText="Regular"
             ></Button>
             <Button
-              key={"p4-3"}
+              key={"p5-3"}
               className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
               text="15 min / day"
               subText="Serious"
             ></Button>
             <Button
-              key={"p4-3"}
+              key={"p5-3"}
               className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
               text="30 min / day"
               subText="Intense"
@@ -288,14 +288,14 @@ export default function Start() {
         <View className="flex justify-center items-center  w-[350px]">
           <View className="flex gap-6">
             <Button
-              key={"p4-1"}
+              key={"p6-1"}
               className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
               text="Take the Assessment"
               description="Let's make a personalized learning for you"
               supText="RECOMMENDED"
             ></Button>
             <Button
-              key={"p4-1"}
+              key={"p6-2"}
               className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
               text="Start from scatch!"
               description="Good for people starting out."
