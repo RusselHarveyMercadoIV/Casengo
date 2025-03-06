@@ -38,6 +38,8 @@ import more from "@/assets/icons/more.png";
 import flame from "@/assets/icons/flame.png";
 import electric from "@/assets/icons/electric.png";
 import leftArrow from "@/assets/icons/left-arrow.png";
+import philippines from "@/assets/icons/philippines.png";
+import america from "@/assets/icons/america.png";
 
 export default {
   google,
@@ -80,4 +82,6 @@ export default {
   flame,
   electric,
   leftArrow,
+  philippines,
+  america,
 };

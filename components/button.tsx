@@ -1,40 +1,52 @@
-import { Image, TouchableOpacity, View } from "react-native";
-import OrangeButton from "../assets/images/button-orange-1.png";
-import WhiteButton from "../assets/images/button-white-1.png";
-
-type ButtonVariants = "white" | "orange";
+import { useState } from "react";
+import { TouchableOpacity, View } from "react-native";
+import PText from "./ui/ptext";
 
 type ButtonTypes = {
-  variant: ButtonVariants;
-  height?: number;
-  width?: number;
+  className: string;
+  text: string;
+  disabled?: boolean;
   children?: React.ReactNode;
 };
 
 export default function Button({
-  variant,
-  height,
-  width,
+  className,
+  text,
   children,
+  disabled = false,
   ...props
 }: ButtonTypes) {
-  const buttonVariant = variant === "white" ? WhiteButton : OrangeButton;
+  const [isPressed, setIsPressed] = useState<Boolean>(false);
 
-  const buttonHeight = height ?? 65;
-  const buttonWidth = width ?? 350;
+  const handleButtonPressed = () => {
+    setIsPressed((prevState) => !prevState);
+  };
+
+  const shadowColor = isPressed ? "#ed7d2d" : "#323842";
 
   return (
-    <View className="relative mb-10">
-      <Image
-        source={buttonVariant}
-        className={`h-[${buttonHeight}px] w-[${buttonWidth}px]`}
-        resizeMode="contain"
-      />
+    <View className="relative">
       <TouchableOpacity
-        className={`absolute top-[-2] flex justify-center items-center h-[${buttonHeight}px] w-[${buttonWidth}px]`}
+        className={`border  rounded-xl ${
+          isPressed ? "border-[#ed7d2d] bg-[#fff3ea]" : "border-[#dee1e6]"
+        }  border-2  flex  ${className}`}
+        onPress={handleButtonPressed}
+        disabled={disabled}
         {...props}
       >
         {children}
+        <PText
+          className={`text-xl  line-30 font-[ABeeZee] ${
+            isPressed ? "text-[#ed7d2d]" : "text-[#323842]"
+          }`}
+          style={{
+            textShadowColor: shadowColor,
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: 1,
+          }}
+        >
+          {text}
+        </PText>
       </TouchableOpacity>
     </View>
   );
