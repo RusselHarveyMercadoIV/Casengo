@@ -123,62 +123,61 @@ export default function Start() {
     content = <View></View>;
   }
 
-  console.log(currentStep);
-
   return (
-    <SafeAreaView className="flex  justify-center items-center bg-white h-full">
+    <SafeAreaView className="flex justify-between items-center bg-white h-full">
       {currentStep > 0 && (
-        <View className="relative flex flex-row items-center justify-center w-full">
-          <TouchableOpacity
-            onPress={() => handleStepChange(-1)}
-            className="absolute w-6 h-6 left-6 top-4"
-          >
-            <Image source={icons.leftArrow} className="w-6 h-6" />
-          </TouchableOpacity>
+        <View>
+          <View className="relative flex flex-row items-center justify-center w-[350px]">
+            <TouchableOpacity
+              onPress={() => handleStepChange(-1)}
+              className="absolute w-6 h-6 left-0 top-4"
+            >
+              <Image source={icons.leftArrow} className="w-6 h-6" />
+            </TouchableOpacity>
 
-          <View
-            className={
-              " flex flex-row  justify-center items-center gap-4 bg-[#f8f9fa] w-[230px] h-[40px] rounded-full mt-2"
-            }
-          >
             <View
-              className={`w-6 h-6 rounded-full ${
-                currentStep >= 1 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
-              }`}
-            />
-            <View
-              className={`w-6 h-6 rounded-full ${
-                currentStep >= 2 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
-              }`}
-            />
-            <View
-              className={`w-6 h-6 rounded-full ${
-                currentStep >= 3 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
-              }`}
-            />
-            <View
-              className={`w-6 h-6 rounded-full ${
-                currentStep >= 4 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
-              }`}
-            />
-            <View
-              className={`w-6 h-6 rounded-full ${
-                currentStep >= 5 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
-              }`}
-            />
-            <View
-              className={`w-6 h-6 rounded-full ${
-                currentStep === 6 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
-              }`}
-            />
+              className={
+                " flex flex-row  justify-center items-center gap-4 bg-[#f8f9fa] w-[230px] h-[40px] rounded-full mt-2"
+              }
+            >
+              <View
+                className={`w-6 h-6 rounded-full ${
+                  currentStep >= 1 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                }`}
+              />
+              <View
+                className={`w-6 h-6 rounded-full ${
+                  currentStep >= 2 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                }`}
+              />
+              <View
+                className={`w-6 h-6 rounded-full ${
+                  currentStep >= 3 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                }`}
+              />
+              <View
+                className={`w-6 h-6 rounded-full ${
+                  currentStep >= 4 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                }`}
+              />
+              <View
+                className={`w-6 h-6 rounded-full ${
+                  currentStep >= 5 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                }`}
+              />
+              <View
+                className={`w-6 h-6 rounded-full ${
+                  currentStep === 6 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                }`}
+              />
+            </View>
           </View>
+          <PText className="text-2xl w-[350px] mt-10 mb-16 ">
+            {headers[currentStep - 1]?.header}
+          </PText>
         </View>
       )}
-      {currentStep > 0 && (
-        <PText className="text-2xl mt-10 mb-16 ">
-          {headers[currentStep - 1]?.header}
-        </PText>
-      )}
+
       {content}
       {currentStep > 0 && (
         <View className="relative mb-10">
