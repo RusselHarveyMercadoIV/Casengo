@@ -12,10 +12,25 @@ import { headers } from "../constants/start";
 import OrangeButton from "../assets/images/button-orange-1.png";
 import WhiteButton from "../assets/images/button-white-1.png";
 import Button from "@/components/button";
+import {
+  academicStatusesType,
+  adNoticeType,
+  comittmentsType,
+  profilingDataType,
+} from "./types/types";
+
+const profilingData: profilingDataType = {
+  countryExam: "",
+  appNotice: "",
+  academicStatus: "",
+  goal: "",
+  comittment: "",
+  start: "",
+};
 
 export default function Start() {
   const { loading, isLoggedIn } = useGlobalContext();
-  const [formData, setFormData] = useState<{}>();
+  const [formData, setFormData] = useState<profilingDataType>(profilingData);
   const [currentStep, setCurrentStep] = useState<number>(0);
 
   if (!loading && isLoggedIn) return <Redirect href={"/"} />;
@@ -23,6 +38,13 @@ export default function Start() {
   const handleStepChange = (step: number) => {
     if (currentStep === 6 && step > 0) return;
     setCurrentStep((prevStep) => prevStep + step);
+  };
+
+  const handleDataChange = (
+    type: keyof profilingDataType,
+    value: profilingDataType[keyof profilingDataType]
+  ) => {
+    setFormData((prevData) => ({ ...prevData, [type]: value }));
   };
 
   let content = (
@@ -76,23 +98,25 @@ export default function Start() {
     </View>
   );
 
-  if (currentStep > 1) {
-    content = <View></View>;
-  }
-
   if (currentStep === 1) {
+    const buttonCss =
+      "flex-row gap-5 py-4 px-8 justify-start items-center w-[350px] ";
+
+    const disabledCss = "opacity-40";
+
+    const imgCss = "w-10 h-10 rounded-2xl  ";
+
     content = (
       <ScrollView contentContainerClassName="flex ">
         <View className="flex gap-10">
           <Button
             key={"p1-1"}
-            className="flex-row gap-5 py-4 px-8 justify-start items-center"
+            className={buttonCss}
             text="PNLE"
+            isHighlighted={formData.countryExam === "PNLE"}
+            onPress={() => handleDataChange("countryExam", "PNLE")}
           >
-            <Image
-              source={icons.philippines}
-              className="w-10 h-10 rounded-2xl  "
-            />
+            <Image source={icons.philippines} className={imgCss} />
           </Button>
           <View className="border border-1 border-[#dee1e6] mt-16 mb-12" />
           <View className="flex justify-center items-center gap-10 w-[350px]">
@@ -100,25 +124,23 @@ export default function Start() {
             <View className="flex gap-5">
               <Button
                 key={"p1-2"}
-                className="flex-row gap-5 py-4 px-8 justify-start items-center w-[350px] opacity-40"
+                className={buttonCss + disabledCss}
                 disabled={true}
                 text="NCLEX - RN"
+                isHighlighted={formData.countryExam === "NCLEX-RN"}
+                onPress={() => handleDataChange("countryExam", "NCLEX-RN")}
               >
-                <Image
-                  source={icons.america}
-                  className="w-10 h-10 rounded-2xl  "
-                />
+                <Image source={icons.america} className={imgCss} />
               </Button>
               <Button
                 key={"p1-3"}
-                className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px] opacity-40"
+                className={buttonCss + disabledCss}
                 disabled={true}
                 text="NCLEX - PN"
+                isHighlighted={formData.countryExam === "NCLEX-PN"}
+                onPress={() => handleDataChange("countryExam", "NCLEX-PN")}
               >
-                <Image
-                  source={icons.america}
-                  className="w-10 h-10 rounded-2xl  "
-                />
+                <Image source={icons.america} className={imgCss} />
               </Button>
             </View>
           </View>
@@ -127,48 +149,36 @@ export default function Start() {
     );
   }
   if (currentStep === 2) {
+    const buttonCss =
+      "flex-row gap-5 py-4 px-8 justify-start items-center w-[350px]";
+
+    const imgCss = "w-8 h-8 rounded-2xl  ";
+
+    const adNotice: adNoticeType = {
+      "Google Search": icons.google,
+      Facebook: icons.facebook,
+      Youtube: icons.youtube,
+      "Friends/family": icons.people,
+      Others: icons.more,
+    };
+
     content = (
       <ScrollView contentContainerClassName="flex h-full ">
         <View className="flex justify-center items-center  w-[350px]">
           <View className="flex gap-6">
-            <Button
-              key={"p2-1"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center w-[350px]"
-              text="Google Search"
-            >
-              <Image source={icons.google} className="w-8 h-8 rounded-2xl  " />
-            </Button>
-            <Button
-              key={"p2-2"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Facebook"
-            >
-              <Image
-                source={icons.facebook}
-                className="w-8 h-8 rounded-2xl  "
-              />
-            </Button>
-            <Button
-              key={"p2-3"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Youtube"
-            >
-              <Image source={icons.youtube} className="w-8 h-8 rounded-2xl  " />
-            </Button>
-            <Button
-              key={"p2-4"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Friends/family"
-            >
-              <Image source={icons.people} className="w-8 h-8 rounded-2xl  " />
-            </Button>
-            <Button
-              key={"p2-5"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Others"
-            >
-              <Image source={icons.more} className="w-8 h-8 rounded-2xl  " />
-            </Button>
+            {(Object.keys(adNotice) as (keyof adNoticeType)[]).map(
+              (choice: keyof adNoticeType) => (
+                <Button
+                  key={choice}
+                  className={buttonCss}
+                  text={choice}
+                  isHighlighted={formData.appNotice === choice}
+                  onPress={() => handleDataChange("appNotice", choice)}
+                >
+                  <Image source={adNotice[choice]} className={imgCss} />
+                </Button>
+              )
+            )}
           </View>
         </View>
       </ScrollView>
@@ -176,45 +186,36 @@ export default function Start() {
   }
 
   if (currentStep === 3) {
+    const buttonCss =
+      "flex-row gap-5 py-4 px-8 justify-start items-center w-[350px]";
+
+    const imgCss = "w-8 h-8   ";
+
+    const academicStatuses: academicStatusesType = {
+      Freshman: icons.syringe,
+      Sophomore: icons.nursecap,
+      Junior: icons.stethoscope,
+      Senior: icons.nurse,
+      "Recent Graduate": icons.note,
+    };
+
     content = (
       <ScrollView contentContainerClassName="flex h-full ">
         <View className="flex justify-center items-center  w-[350px]">
           <View className="flex gap-6">
-            <Button
-              key={"p3-1"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center w-[350px]"
-              text="Freshman"
-            >
-              <Image source={icons.syringe} className="w-8 h-8   " />
-            </Button>
-            <Button
-              key={"p3-2"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Sophomore"
-            >
-              <Image source={icons.nursecap} className="w-8 h-8   " />
-            </Button>
-            <Button
-              key={"p3-3"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Junior"
-            >
-              <Image source={icons.stethoscope} className="w-8 h-8  " />
-            </Button>
-            <Button
-              key={"p3-4"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Senior"
-            >
-              <Image source={icons.nurse} className="w-8 h-8 " />
-            </Button>
-            <Button
-              key={"p3-5"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Recent Graduate"
-            >
-              <Image source={icons.note} className="w-8 h-8  " />
-            </Button>
+            {(
+              Object.keys(academicStatuses) as (keyof academicStatusesType)[]
+            ).map((choice: keyof academicStatusesType) => (
+              <Button
+                key={choice}
+                className={buttonCss}
+                text={choice}
+                isHighlighted={formData.academicStatus === choice}
+                onPress={() => handleDataChange("academicStatus", choice)}
+              >
+                <Image source={academicStatuses[choice]} className={imgCss} />
+              </Button>
+            ))}
           </View>
         </View>
       </ScrollView>
@@ -222,25 +223,28 @@ export default function Start() {
   }
 
   if (currentStep === 4) {
+    const buttonCss =
+      "flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]";
+
+    const goals = [
+      "Build foundational knowledge",
+      "Strengthen clinical skills",
+      "Prepare for PNLE",
+    ] as const;
+
     content = (
       <ScrollView contentContainerClassName="flex h-full ">
         <View className="flex justify-center items-center  w-[350px]">
           <View className="flex gap-6">
-            <Button
-              key={"p4-1"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
-              text="Build foundational knowledge"
-            ></Button>
-            <Button
-              key={"p4-2"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
-              text="Strengthen clinical skills"
-            ></Button>
-            <Button
-              key={"p4-3"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
-              text="Prepare for PNLE"
-            ></Button>
+            {goals.map((goal) => (
+              <Button
+                key={goal}
+                className={buttonCss}
+                text={goal}
+                isHighlighted={formData.goal === goal}
+                onPress={() => handleDataChange("goal", goal)}
+              />
+            ))}
           </View>
         </View>
       </ScrollView>
@@ -248,34 +252,32 @@ export default function Start() {
   }
 
   if (currentStep === 5) {
+    const buttonCss =
+      "flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]";
+
+    const comittments: comittmentsType = {
+      "3 min / day": "Casual",
+      "10 min / day": "Regular",
+      "15 min / day": "Serious",
+      "30 min / day": "Intense",
+    };
+
     content = (
       <ScrollView contentContainerClassName="flex h-full ">
         <View className="flex justify-center items-center  w-[350px]">
           <View className="flex gap-6">
-            <Button
-              key={"p5-1"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
-              text="3 min / day"
-              subText="Casual"
-            ></Button>
-            <Button
-              key={"p5-2"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
-              text="10 min / day"
-              subText="Regular"
-            ></Button>
-            <Button
-              key={"p5-3"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
-              text="15 min / day"
-              subText="Serious"
-            ></Button>
-            <Button
-              key={"p5-4"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
-              text="30 min / day"
-              subText="Intense"
-            ></Button>
+            {(Object.keys(comittments) as (keyof comittmentsType)[]).map(
+              (comittment: keyof comittmentsType) => (
+                <Button
+                  key={comittment}
+                  className={buttonCss}
+                  text={comittment}
+                  subText={comittments[comittment]}
+                  isHighlighted={formData.comittment === comittment}
+                  onPress={() => handleDataChange("comittment", comittment)}
+                />
+              )
+            )}
           </View>
         </View>
       </ScrollView>
@@ -283,28 +285,43 @@ export default function Start() {
   }
 
   if (currentStep === 6) {
+    const buttonCss =
+      "flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]";
+
     content = (
       <ScrollView contentContainerClassName="flex h-full ">
         <View className="flex justify-center items-center  w-[350px]">
           <View className="flex gap-6">
             <Button
               key={"p6-1"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
+              className={buttonCss}
               text="Take the Assessment"
-              description="Let's make a personalized learning for you"
+              description="Let's make a personalized learning for you!"
               supText="RECOMMENDED"
-            ></Button>
+              isHighlighted={formData.start === "personalized"}
+              onPress={() => handleDataChange("start", "personalized")}
+            />
             <Button
               key={"p6-2"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
+              className={buttonCss}
               text="Start from scatch!"
               description="Good for people starting out."
-            ></Button>
+              isHighlighted={formData.start === "scratch"}
+              onPress={() => handleDataChange("start", "scratch")}
+            />
           </View>
         </View>
       </ScrollView>
     );
   }
+
+  const stepsForm = "w-6 h-6 rounded-full";
+  const finishedStep = "bg-[#ed7d2d]";
+  const unfinishedStep = "bg-[#dee1e6]";
+
+  const steps = Object.keys(formData);
+  const current = formData[steps[currentStep - 1] as keyof profilingDataType];
+  const isContinue = current === "";
 
   return (
     <SafeAreaView className="flex justify-between items-center bg-white h-full">
@@ -324,33 +341,33 @@ export default function Start() {
               }
             >
               <View
-                className={`w-6 h-6 rounded-full ${
-                  currentStep >= 1 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                className={`${stepsForm} ${
+                  currentStep >= 1 ? finishedStep : unfinishedStep
                 }`}
               />
               <View
-                className={`w-6 h-6 rounded-full ${
-                  currentStep >= 2 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                className={`${stepsForm} ${
+                  currentStep >= 2 ? finishedStep : unfinishedStep
                 }`}
               />
               <View
-                className={`w-6 h-6 rounded-full ${
-                  currentStep >= 3 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                className={`${stepsForm} ${
+                  currentStep >= 3 ? finishedStep : unfinishedStep
                 }`}
               />
               <View
-                className={`w-6 h-6 rounded-full ${
-                  currentStep >= 4 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                className={`${stepsForm} ${
+                  currentStep >= 4 ? finishedStep : unfinishedStep
                 }`}
               />
               <View
-                className={`w-6 h-6 rounded-full ${
-                  currentStep >= 5 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                className={`${stepsForm} ${
+                  currentStep >= 5 ? finishedStep : unfinishedStep
                 }`}
               />
               <View
-                className={`w-6 h-6 rounded-full ${
-                  currentStep === 6 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                className={`${stepsForm} ${
+                  currentStep === 6 ? finishedStep : unfinishedStep
                 }`}
               />
             </View>
@@ -363,7 +380,7 @@ export default function Start() {
 
       {content}
       {currentStep > 0 && (
-        <View className="relative mb-10">
+        <View className={`relative mb-10 ${isContinue && "opacity-40"}`}>
           <Image
             source={OrangeButton}
             className=" w-[350px] h-[65px]"
@@ -372,6 +389,7 @@ export default function Start() {
           <TouchableOpacity
             className=" w-[350px] h-[65px] absolute top-[-5px] flex justify-center items-center"
             onPress={() => handleStepChange(1)}
+            disabled={current === ""}
           >
             <PText className="text-white text-xl font-bold">CONTINUE</PText>
           </TouchableOpacity>
