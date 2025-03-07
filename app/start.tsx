@@ -76,23 +76,19 @@ export default function Start() {
     </View>
   );
 
-  if (currentStep > 1) {
-    content = <View></View>;
-  }
-
   if (currentStep === 1) {
+    const buttonCss =
+      "flex-row gap-5 py-4 px-8 justify-start items-center w-[350px] ";
+
+    const disabledCss = "opacity-40";
+
+    const imgCss = "w-10 h-10 rounded-2xl  ";
+
     content = (
       <ScrollView contentContainerClassName="flex ">
         <View className="flex gap-10">
-          <Button
-            key={"p1-1"}
-            className="flex-row gap-5 py-4 px-8 justify-start items-center"
-            text="PNLE"
-          >
-            <Image
-              source={icons.philippines}
-              className="w-10 h-10 rounded-2xl  "
-            />
+          <Button key={"p1-1"} className={buttonCss} text="PNLE">
+            <Image source={icons.philippines} className={imgCss} />
           </Button>
           <View className="border border-1 border-[#dee1e6] mt-16 mb-12" />
           <View className="flex justify-center items-center gap-10 w-[350px]">
@@ -100,25 +96,19 @@ export default function Start() {
             <View className="flex gap-5">
               <Button
                 key={"p1-2"}
-                className="flex-row gap-5 py-4 px-8 justify-start items-center w-[350px] opacity-40"
+                className={buttonCss + disabledCss}
                 disabled={true}
                 text="NCLEX - RN"
               >
-                <Image
-                  source={icons.america}
-                  className="w-10 h-10 rounded-2xl  "
-                />
+                <Image source={icons.america} className={imgCss} />
               </Button>
               <Button
                 key={"p1-3"}
-                className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px] opacity-40"
+                className={buttonCss + disabledCss}
                 disabled={true}
                 text="NCLEX - PN"
               >
-                <Image
-                  source={icons.america}
-                  className="w-10 h-10 rounded-2xl  "
-                />
+                <Image source={icons.america} className={imgCss} />
               </Button>
             </View>
           </View>
@@ -127,48 +117,38 @@ export default function Start() {
     );
   }
   if (currentStep === 2) {
+    const buttonCss =
+      "flex-row gap-5 py-4 px-8 justify-start items-center w-[350px]";
+
+    const imgCss = "w-8 h-8 rounded-2xl  ";
+
+    type choicesType = {
+      "Google Search": number;
+      Facebook: number;
+      Youtube: number;
+      "Friends/family": number;
+      Others: number;
+    };
+
+    const choices: choicesType = {
+      "Google Search": icons.google,
+      Facebook: icons.facebook,
+      Youtube: icons.youtube,
+      "Friends/family": icons.people,
+      Others: icons.more,
+    };
+
     content = (
       <ScrollView contentContainerClassName="flex h-full ">
         <View className="flex justify-center items-center  w-[350px]">
           <View className="flex gap-6">
-            <Button
-              key={"p2-1"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center w-[350px]"
-              text="Google Search"
-            >
-              <Image source={icons.google} className="w-8 h-8 rounded-2xl  " />
-            </Button>
-            <Button
-              key={"p2-2"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Facebook"
-            >
-              <Image
-                source={icons.facebook}
-                className="w-8 h-8 rounded-2xl  "
-              />
-            </Button>
-            <Button
-              key={"p2-3"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Youtube"
-            >
-              <Image source={icons.youtube} className="w-8 h-8 rounded-2xl  " />
-            </Button>
-            <Button
-              key={"p2-4"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Friends/family"
-            >
-              <Image source={icons.people} className="w-8 h-8 rounded-2xl  " />
-            </Button>
-            <Button
-              key={"p2-5"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Others"
-            >
-              <Image source={icons.more} className="w-8 h-8 rounded-2xl  " />
-            </Button>
+            {(Object.keys(choices) as (keyof choicesType)[]).map(
+              (choice: keyof choicesType) => (
+                <Button key={choice} className={buttonCss} text={choice}>
+                  <Image source={choices[choice]} className={imgCss} />
+                </Button>
+              )
+            )}
           </View>
         </View>
       </ScrollView>
@@ -176,45 +156,38 @@ export default function Start() {
   }
 
   if (currentStep === 3) {
+    const buttonCss =
+      "flex-row gap-5 py-4 px-8 justify-start items-center w-[350px]";
+
+    const imgCss = "w-8 h-8   ";
+
+    type choicesType = {
+      Freshman: number;
+      Sophomore: number;
+      Junior: number;
+      Senior: number;
+      "Recent Graduate": number;
+    };
+
+    const choices: choicesType = {
+      Freshman: icons.syringe,
+      Sophomore: icons.nursecap,
+      Junior: icons.stethoscope,
+      Senior: icons.nurse,
+      "Recent Graduate": icons.note,
+    };
+
     content = (
       <ScrollView contentContainerClassName="flex h-full ">
         <View className="flex justify-center items-center  w-[350px]">
           <View className="flex gap-6">
-            <Button
-              key={"p3-1"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center w-[350px]"
-              text="Freshman"
-            >
-              <Image source={icons.syringe} className="w-8 h-8   " />
-            </Button>
-            <Button
-              key={"p3-2"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Sophomore"
-            >
-              <Image source={icons.nursecap} className="w-8 h-8   " />
-            </Button>
-            <Button
-              key={"p3-3"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Junior"
-            >
-              <Image source={icons.stethoscope} className="w-8 h-8  " />
-            </Button>
-            <Button
-              key={"p3-4"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Senior"
-            >
-              <Image source={icons.nurse} className="w-8 h-8 " />
-            </Button>
-            <Button
-              key={"p3-5"}
-              className="flex-row gap-5 py-4 px-8 justify-start items-center  w-[350px]"
-              text="Recent Graduate"
-            >
-              <Image source={icons.note} className="w-8 h-8  " />
-            </Button>
+            {(Object.keys(choices) as (keyof choicesType)[]).map(
+              (choice: keyof choicesType) => (
+                <Button key={choice} className={buttonCss} text={choice}>
+                  <Image source={choices[choice]} className={imgCss} />
+                </Button>
+              )
+            )}
           </View>
         </View>
       </ScrollView>
@@ -222,25 +195,22 @@ export default function Start() {
   }
 
   if (currentStep === 4) {
+    const buttonCss =
+      "flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]";
+
+    const goals = [
+      "Build foundational knowledge",
+      "Strengthen clinical skills",
+      "Prepare for PNLE",
+    ];
+
     content = (
       <ScrollView contentContainerClassName="flex h-full ">
         <View className="flex justify-center items-center  w-[350px]">
           <View className="flex gap-6">
-            <Button
-              key={"p4-1"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
-              text="Build foundational knowledge"
-            ></Button>
-            <Button
-              key={"p4-2"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
-              text="Strengthen clinical skills"
-            ></Button>
-            <Button
-              key={"p4-3"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
-              text="Prepare for PNLE"
-            ></Button>
+            {goals.map((goal) => (
+              <Button key={goal} className={buttonCss} text={goal} />
+            ))}
           </View>
         </View>
       </ScrollView>
@@ -248,34 +218,37 @@ export default function Start() {
   }
 
   if (currentStep === 5) {
+    const buttonCss =
+      "flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]";
+
+    type comittmentsType = {
+      "3 min / day": string;
+      "10 min / day": string;
+      "15 min / day": string;
+      "30 min / day": string;
+    };
+
+    const comittments: comittmentsType = {
+      "3 min / day": "Casual",
+      "10 min / day": "Regular",
+      "15 min / day": "Serious",
+      "30 min / day": "Intense",
+    };
+
     content = (
       <ScrollView contentContainerClassName="flex h-full ">
         <View className="flex justify-center items-center  w-[350px]">
           <View className="flex gap-6">
-            <Button
-              key={"p5-1"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
-              text="3 min / day"
-              subText="Casual"
-            ></Button>
-            <Button
-              key={"p5-2"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
-              text="10 min / day"
-              subText="Regular"
-            ></Button>
-            <Button
-              key={"p5-3"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
-              text="15 min / day"
-              subText="Serious"
-            ></Button>
-            <Button
-              key={"p5-4"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center  w-[350px]"
-              text="30 min / day"
-              subText="Intense"
-            ></Button>
+            {(Object.keys(comittments) as (keyof comittmentsType)[]).map(
+              (comittment: keyof comittmentsType) => (
+                <Button
+                  key={comittment}
+                  className={buttonCss}
+                  text={comittment}
+                  subText={comittments[comittment]}
+                />
+              )
+            )}
           </View>
         </View>
       </ScrollView>
@@ -283,20 +256,23 @@ export default function Start() {
   }
 
   if (currentStep === 6) {
+    const buttonCss =
+      "flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]";
+
     content = (
       <ScrollView contentContainerClassName="flex h-full ">
         <View className="flex justify-center items-center  w-[350px]">
           <View className="flex gap-6">
             <Button
               key={"p6-1"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
+              className={buttonCss}
               text="Take the Assessment"
               description="Let's make a personalized learning for you!"
               supText="RECOMMENDED"
             ></Button>
             <Button
               key={"p6-2"}
-              className="flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]"
+              className={buttonCss}
               text="Start from scatch!"
               description="Good for people starting out."
             ></Button>
@@ -305,6 +281,10 @@ export default function Start() {
       </ScrollView>
     );
   }
+
+  const stepsForm = "w-6 h-6 rounded-full";
+  const finishedStep = "bg-[#ed7d2d]";
+  const unfinishedStep = "bg-[#dee1e6]";
 
   return (
     <SafeAreaView className="flex justify-between items-center bg-white h-full">
@@ -324,33 +304,33 @@ export default function Start() {
               }
             >
               <View
-                className={`w-6 h-6 rounded-full ${
-                  currentStep >= 1 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                className={`${stepsForm} ${
+                  currentStep >= 1 ? finishedStep : unfinishedStep
                 }`}
               />
               <View
-                className={`w-6 h-6 rounded-full ${
-                  currentStep >= 2 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                className={`${stepsForm} ${
+                  currentStep >= 2 ? finishedStep : unfinishedStep
                 }`}
               />
               <View
-                className={`w-6 h-6 rounded-full ${
-                  currentStep >= 3 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                className={`${stepsForm} ${
+                  currentStep >= 3 ? finishedStep : unfinishedStep
                 }`}
               />
               <View
-                className={`w-6 h-6 rounded-full ${
-                  currentStep >= 4 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                className={`${stepsForm} ${
+                  currentStep >= 4 ? finishedStep : unfinishedStep
                 }`}
               />
               <View
-                className={`w-6 h-6 rounded-full ${
-                  currentStep >= 5 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                className={`${stepsForm} ${
+                  currentStep >= 5 ? finishedStep : unfinishedStep
                 }`}
               />
               <View
-                className={`w-6 h-6 rounded-full ${
-                  currentStep === 6 ? "bg-[#ed7d2d]" : "bg-[#dee1e6]"
+                className={`${stepsForm} ${
+                  currentStep === 6 ? finishedStep : unfinishedStep
                 }`}
               />
             </View>
@@ -363,7 +343,7 @@ export default function Start() {
 
       {content}
       {currentStep > 0 && (
-        <View className="relative mb-10">
+        <View className="relative mb-10 ">
           <Image
             source={OrangeButton}
             className=" w-[350px] h-[65px]"
