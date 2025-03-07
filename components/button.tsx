@@ -10,6 +10,9 @@ type ButtonTypes = {
   supText?: string;
   disabled?: boolean;
   children?: React.ReactNode;
+  isHighlighted?: boolean;
+  handlePress?: () => void;
+  onPress?: () => void;
 };
 
 export default function Button({
@@ -20,25 +23,19 @@ export default function Button({
   supText,
   children,
   disabled = false,
-  ...props
+  isHighlighted,
+  onPress,
 }: ButtonTypes) {
-  const [isPressed, setIsPressed] = useState<Boolean>(false);
-
-  const handleButtonPressed = () => {
-    setIsPressed((prevState) => !prevState);
-  };
-
-  const shadowColor = isPressed ? "#ed7d2d" : "#323842";
+  const shadowColor = isHighlighted ? "#ed7d2d" : "#323842";
 
   return (
     <View className="relative">
       <TouchableOpacity
         className={`border  rounded-xl ${
-          isPressed ? "border-[#ed7d2d] bg-[#fff3ea]" : "border-[#dee1e6]"
+          isHighlighted ? "border-[#ed7d2d] bg-[#fff3ea]" : "border-[#dee1e6]"
         }  border-2  flex  ${className}`}
-        onPress={handleButtonPressed}
         disabled={disabled}
-        {...props}
+        onPress={onPress}
       >
         {supText && (
           <PText className="absolute  top-0 right-0 bg-[#1ac052] text-white py-2 px-3 rounded-lg">
@@ -49,7 +46,7 @@ export default function Button({
         <View className="flex gap-5">
           <PText
             className={`text-xl  line-30 font-[ABeeZee] ${
-              isPressed ? "text-[#ed7d2d]" : "text-[#323842]"
+              isHighlighted ? "text-[#ed7d2d]" : "text-[#323842]"
             }`}
             style={{
               textShadowColor: shadowColor,
@@ -61,7 +58,9 @@ export default function Button({
           </PText>
           {description && (
             <PText
-              className={` ${isPressed ? "text-[#ed7d2d]" : "text-[#9095a0]"} `}
+              className={` ${
+                isHighlighted ? "text-[#ed7d2d]" : "text-[#9095a0]"
+              } `}
             >
               {description}
             </PText>
@@ -71,7 +70,7 @@ export default function Button({
         {subText && (
           <PText
             className={`absolute right-6 ${
-              isPressed ? "text-[#ed7d2d]" : "text-[#dee1e6]"
+              isHighlighted ? "text-[#ed7d2d]" : "text-[#dee1e6]"
             } `}
           >
             {subText}
