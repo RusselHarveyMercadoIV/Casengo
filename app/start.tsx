@@ -114,7 +114,11 @@ export default function Start() {
             className={buttonCss}
             text="PNLE"
             isHighlighted={formData.countryExam === "PNLE"}
-            onPress={() => handleDataChange("countryExam", "PNLE")}
+            onPress={
+              formData.countryExam === "PNLE"
+                ? () => handleDataChange("countryExam", "")
+                : () => handleDataChange("countryExam", "PNLE")
+            }
           >
             <Image source={icons.philippines} className={imgCss} />
           </Button>
@@ -128,7 +132,11 @@ export default function Start() {
                 disabled={true}
                 text="NCLEX - RN"
                 isHighlighted={formData.countryExam === "NCLEX-RN"}
-                onPress={() => handleDataChange("countryExam", "NCLEX-RN")}
+                onPress={
+                  formData.countryExam === "NCLEX-RN"
+                    ? () => handleDataChange("countryExam", "")
+                    : () => handleDataChange("countryExam", "NCLEX-RN")
+                }
               >
                 <Image source={icons.america} className={imgCss} />
               </Button>
@@ -138,7 +146,11 @@ export default function Start() {
                 disabled={true}
                 text="NCLEX - PN"
                 isHighlighted={formData.countryExam === "NCLEX-PN"}
-                onPress={() => handleDataChange("countryExam", "NCLEX-PN")}
+                onPress={
+                  formData.countryExam === "NCLEX-PN"
+                    ? () => handleDataChange("countryExam", "")
+                    : () => handleDataChange("countryExam", "NCLEX-PN")
+                }
               >
                 <Image source={icons.america} className={imgCss} />
               </Button>
@@ -173,7 +185,11 @@ export default function Start() {
                   className={buttonCss}
                   text={choice}
                   isHighlighted={formData.appNotice === choice}
-                  onPress={() => handleDataChange("appNotice", choice)}
+                  onPress={
+                    formData.appNotice === choice
+                      ? () => handleDataChange("appNotice", "")
+                      : () => handleDataChange("appNotice", choice)
+                  }
                 >
                   <Image source={adNotice[choice]} className={imgCss} />
                 </Button>
@@ -211,7 +227,11 @@ export default function Start() {
                 className={buttonCss}
                 text={choice}
                 isHighlighted={formData.academicStatus === choice}
-                onPress={() => handleDataChange("academicStatus", choice)}
+                onPress={
+                  formData.academicStatus === choice
+                    ? () => handleDataChange("academicStatus", "")
+                    : () => handleDataChange("academicStatus", choice)
+                }
               >
                 <Image source={academicStatuses[choice]} className={imgCss} />
               </Button>
@@ -242,7 +262,11 @@ export default function Start() {
                 className={buttonCss}
                 text={goal}
                 isHighlighted={formData.goal === goal}
-                onPress={() => handleDataChange("goal", goal)}
+                onPress={
+                  formData.goal === goal
+                    ? () => handleDataChange("goal", "")
+                    : () => handleDataChange("goal", goal)
+                }
               />
             ))}
           </View>
@@ -274,7 +298,11 @@ export default function Start() {
                   text={comittment}
                   subText={comittments[comittment]}
                   isHighlighted={formData.comittment === comittment}
-                  onPress={() => handleDataChange("comittment", comittment)}
+                  onPress={
+                    formData.comittment === comittment
+                      ? () => handleDataChange("comittment", "")
+                      : () => handleDataChange("comittment", comittment)
+                  }
                 />
               )
             )}
@@ -299,7 +327,11 @@ export default function Start() {
               description="Let's make a personalized learning for you!"
               supText="RECOMMENDED"
               isHighlighted={formData.start === "personalized"}
-              onPress={() => handleDataChange("start", "personalized")}
+              onPress={
+                formData.start === "personalized"
+                  ? () => handleDataChange("start", "")
+                  : () => handleDataChange("start", "personalized")
+              }
             />
             <Button
               key={"p6-2"}
@@ -307,7 +339,11 @@ export default function Start() {
               text="Start from scatch!"
               description="Good for people starting out."
               isHighlighted={formData.start === "scratch"}
-              onPress={() => handleDataChange("start", "scratch")}
+              onPress={
+                formData.start === "scratch"
+                  ? () => handleDataChange("start", "")
+                  : () => handleDataChange("start", "scratch")
+              }
             />
           </View>
         </View>
