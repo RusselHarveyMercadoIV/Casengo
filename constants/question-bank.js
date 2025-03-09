@@ -26,6 +26,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "c",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
@@ -44,6 +45,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "b",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
@@ -62,6 +64,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "a",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
@@ -81,6 +84,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "b",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
@@ -109,11 +113,13 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "c",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
       hard: {
         multipleChoices: [],
+        sata: [],
         caseBased: [],
         sequencing: [
           {
@@ -146,11 +152,13 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "b",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
       medium: {
         multipleChoices: [],
+        sata: [],
         caseBased: [],
         sequencing: [
           {
@@ -169,6 +177,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       },
       hard: {
         multipleChoices: [],
+        sata: [],
         caseBased: [
           {
             id: "11",
@@ -214,6 +223,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "c",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
@@ -243,11 +253,13 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "b",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
       hard: {
         multipleChoices: [],
+        sata: [],
         caseBased: [
           {
             id: "16",
@@ -292,6 +304,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "a",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
@@ -310,11 +323,13 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "c",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
       hard: {
         multipleChoices: [],
+        sata: [],
         caseBased: [
           {
             id: "20",
@@ -348,11 +363,13 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "a",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
       medium: {
         multipleChoices: [],
+        sata: [],
         caseBased: [],
         sequencing: [
           {
@@ -369,6 +386,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       },
       hard: {
         multipleChoices: [],
+        sata: [],
         caseBased: [
           {
             id: "23",
@@ -401,6 +419,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "a",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
@@ -419,11 +438,13 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "c",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
       hard: {
         multipleChoices: [],
+        sata: [],
         caseBased: [
           {
             id: "25",
@@ -467,6 +488,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "d",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
@@ -485,11 +507,13 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "b",
           },
         ],
+        sata: [],
         caseBased: [],
         sequencing: [],
       },
       hard: {
         multipleChoices: [],
+        sata: [],
         caseBased: [
           {
             id: "29",
