@@ -44,6 +44,14 @@ export default function Start() {
     type: keyof profilingDataType,
     value: profilingDataType[keyof profilingDataType]
   ) => {
+    if (type === "academicStatus") {
+      const isDisabled =
+        !["Recent Graduate", "Senior"].includes(value) &&
+        formData.goal === "Prepare for PNLE";
+      if (isDisabled) {
+        setFormData((prevData) => ({ ...prevData, goal: "" }));
+      }
+    }
     setFormData((prevData) => ({ ...prevData, [type]: value }));
   };
 
@@ -243,8 +251,7 @@ export default function Start() {
   }
 
   if (currentStep === 4) {
-    const buttonCss =
-      "flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]";
+    const buttonCss = `flex-row gap-5 py-6 px-8 justify-start items-center w-[350px]`;
 
     const goals = [
       "Build foundational knowledge",
@@ -256,19 +263,27 @@ export default function Start() {
       <ScrollView contentContainerClassName="flex h-full ">
         <View className="flex justify-center items-center  w-[350px]">
           <View className="flex gap-6">
-            {goals.map((goal) => (
-              <Button
-                key={goal}
-                className={buttonCss}
-                text={goal}
-                isHighlighted={formData.goal === goal}
-                onPress={
-                  formData.goal === goal
-                    ? () => handleDataChange("goal", "")
-                    : () => handleDataChange("goal", goal)
-                }
-              />
-            ))}
+            {goals.map((goal) => {
+              const isDisabled =
+                !["Recent Graduate", "Senior"].includes(
+                  formData.academicStatus
+                ) && goal === "Prepare for PNLE";
+
+              return (
+                <Button
+                  key={goal}
+                  className={buttonCss}
+                  text={goal}
+                  isHighlighted={formData.goal === goal && !isDisabled}
+                  disabled={isDisabled}
+                  onPress={
+                    formData.goal === goal
+                      ? () => handleDataChange("goal", "")
+                      : () => handleDataChange("goal", goal)
+                  }
+                />
+              );
+            })}
           </View>
         </View>
       </ScrollView>

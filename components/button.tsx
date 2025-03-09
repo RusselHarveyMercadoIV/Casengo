@@ -33,7 +33,7 @@ export default function Button({
       <TouchableOpacity
         className={`border  rounded-xl ${
           isHighlighted ? "border-[#ed7d2d] bg-[#fff3ea]" : "border-[#dee1e6]"
-        }  border-2  flex  ${className}`}
+        }  border-2  flex  ${className} ${disabled && "opacity-40"}`}
         disabled={disabled}
         onPress={onPress}
       >
