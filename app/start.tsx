@@ -383,27 +383,37 @@ export default function Start() {
               />
               <View
                 className={`${stepsForm} ${
-                  currentStep >= 2 ? finishedStep : unfinishedStep
+                  currentStep >= 2 || formData.appNotice !== ""
+                    ? finishedStep
+                    : unfinishedStep
                 }`}
               />
               <View
                 className={`${stepsForm} ${
-                  currentStep >= 3 ? finishedStep : unfinishedStep
+                  currentStep >= 3 || formData.academicStatus !== ""
+                    ? finishedStep
+                    : unfinishedStep
                 }`}
               />
               <View
                 className={`${stepsForm} ${
-                  currentStep >= 4 ? finishedStep : unfinishedStep
+                  currentStep >= 4 || formData.goal !== ""
+                    ? finishedStep
+                    : unfinishedStep
                 }`}
               />
               <View
                 className={`${stepsForm} ${
-                  currentStep >= 5 ? finishedStep : unfinishedStep
+                  currentStep >= 5 || formData.comittment !== ""
+                    ? finishedStep
+                    : unfinishedStep
                 }`}
               />
               <View
                 className={`${stepsForm} ${
-                  currentStep === 6 ? finishedStep : unfinishedStep
+                  currentStep === 6 || formData.start !== ""
+                    ? finishedStep
+                    : unfinishedStep
                 }`}
               />
             </View>
