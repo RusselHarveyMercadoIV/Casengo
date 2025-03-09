@@ -4,7 +4,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       easy: {
         multipleChoices: [
           {
-            id: "apem1",
+            id: "1",
             question: "What is the primary function of the respiratory system?",
             choices: {
               a: "To pump blood",
@@ -15,7 +15,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "b",
           },
           {
-            id: "apem1",
+            id: "2",
             question: "What is the largest organ in the human body?",
             choices: {
               a: "Heart",
@@ -32,7 +32,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       medium: {
         multipleChoices: [
           {
-            id: "apmm1",
+            id: "3",
             question:
               "Which part of the brain controls balance and coordination?",
             choices: {
@@ -50,7 +50,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       hard: {
         multipleChoices: [
           {
-            id: "aphm1",
+            id: "4",
             question:
               "A patient has difficulty producing speech but can understand language after a stroke. Which area of the brain is likely affected?",
             choices: {
@@ -70,7 +70,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       easy: {
         multipleChoices: [
           {
-            id: "mem1",
+            id: "5",
             question: "What is the shape of bacilli bacteria?",
             choices: {
               a: "Spherical",
@@ -87,7 +87,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       medium: {
         multipleChoices: [
           {
-            id: "mmm1",
+            id: "6",
             question: "Which of the following is a gram-positive bacterium?",
             choices: {
               a: "Escherichia coli",
@@ -98,7 +98,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "b",
           },
           {
-            id: "mmm1",
+            id: "7",
             question: "What type of microorganism is yeast?",
             choices: {
               a: "Bacteria",
@@ -117,7 +117,7 @@ export const DIAGNOSTIC_QUESTIONS = {
         caseBased: [],
         sequencing: [
           {
-            id: "mhs1",
+            id: "8",
             question:
               "Arrange the steps of Gram staining in the correct order:",
             choices: {
@@ -135,7 +135,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       easy: {
         multipleChoices: [
           {
-            id: "mem1",
+            id: "9",
             question: "What is the first step in the nursing process?",
             choices: {
               a: "Diagnosis",
@@ -154,7 +154,7 @@ export const DIAGNOSTIC_QUESTIONS = {
         caseBased: [],
         sequencing: [
           {
-            id: "mhs1",
+            id: "10",
             question: "Arrange the steps of handwashing in the correct order:",
             choices: {
               a: "Apply soap",
@@ -171,7 +171,7 @@ export const DIAGNOSTIC_QUESTIONS = {
         multipleChoices: [],
         caseBased: [
           {
-            id: "mem1",
+            id: "11",
             question:
               "A nurse is caring for a patient with dysphagia. Which intervention should the nurse prioritize?",
             choices: {
@@ -183,7 +183,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "b",
           },
           {
-            id: "mem1",
+            id: "12",
             question:
               "A nurse is preparing to administer medication via a nasogastric tube. Which action is essential?",
             choices: {
@@ -202,7 +202,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       easy: {
         multipleChoices: [
           {
-            id: "mem1",
+            id: "13",
             question:
               "What is the term for the study of how drugs affect the body?",
             choices: {
@@ -220,7 +220,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       medium: {
         multipleChoices: [
           {
-            id: "mem1",
+            id: "14",
             question:
               "Which route of administration involves injection into a muscle?",
             choices: {
@@ -232,7 +232,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "d",
           },
           {
-            id: "mem1",
+            id: "15",
             question: "Which medication is commonly used to reduce fever?",
             choices: {
               a: "Penicillin",
@@ -250,7 +250,7 @@ export const DIAGNOSTIC_QUESTIONS = {
         multipleChoices: [],
         caseBased: [
           {
-            id: "mem1",
+            id: "16",
             question:
               "A patient is prescribed a medication that requires monitoring of liver function. Which of the following drugs is most likely?",
             choices: {
@@ -269,7 +269,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       easy: {
         multipleChoices: [
           {
-            id: "mem1",
+            id: "17",
             question: "What is the primary focus of community health nursing?",
             choices: {
               a: "Individual patient care",
@@ -280,7 +280,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "c",
           },
           {
-            id: "mem1",
+            id: "18",
             question:
               "What is a common method to prevent the spread of infectious diseases?",
             choices: {
@@ -298,7 +298,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       medium: {
         multipleChoices: [
           {
-            id: "mem1",
+            id: "19",
             question:
               "Which of the following is a core function of public health?",
             choices: {
@@ -317,7 +317,7 @@ export const DIAGNOSTIC_QUESTIONS = {
         multipleChoices: [],
         caseBased: [
           {
-            id: "mem1",
+            id: "20",
             question:
               "A community nurse identifies an increase in dengue cases in a barangay. What should be the first step?",
             choices: {
@@ -336,7 +336,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       easy: {
         multipleChoices: [
           {
-            id: "mem1",
+            id: "21",
             question:
               "During which trimester does the fetus develop most of its organs?",
             choices: {
@@ -356,7 +356,7 @@ export const DIAGNOSTIC_QUESTIONS = {
         caseBased: [],
         sequencing: [
           {
-            id: "mem1",
+            id: "22",
             question: "Arrange the stages of labor in the correct order:",
             choices: {
               a: "Delivery of the placenta",
@@ -371,7 +371,7 @@ export const DIAGNOSTIC_QUESTIONS = {
         multipleChoices: [],
         caseBased: [
           {
-            id: "mem1",
+            id: "23",
             question:
               "A postpartum mother reports heavy bleeding and abdominal pain. What should the nurse suspect?",
             choices: {
@@ -390,7 +390,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       easy: {
         multipleChoices: [
           {
-            id: "mem1",
+            id: "23",
             question: "What is the normal range for adult blood pressure?",
             choices: {
               a: "90/60 to 120/80 mmHg",
@@ -407,7 +407,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       medium: {
         multipleChoices: [
           {
-            id: "mem1",
+            id: "24",
             question:
               "Which electrolyte is primarily responsible for cardiac muscle contraction?",
             choices: {
@@ -426,7 +426,7 @@ export const DIAGNOSTIC_QUESTIONS = {
         multipleChoices: [],
         caseBased: [
           {
-            id: "mem1",
+            id: "25",
             question:
               "A patient with diabetes presents with fruity breath and rapid breathing. What is the likely diagnosis?",
             choices: {
@@ -445,7 +445,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       easy: {
         multipleChoices: [
           {
-            id: "mem1",
+            id: "26",
             question: "What is the primary goal of therapeutic communication?",
             choices: {
               a: "To provide advice",
@@ -456,7 +456,7 @@ export const DIAGNOSTIC_QUESTIONS = {
             answer: "b",
           },
           {
-            id: "mem1",
+            id: "27",
             question: "Which organ is responsible for producing insulin?",
             choices: {
               a: "Liver",
@@ -473,7 +473,7 @@ export const DIAGNOSTIC_QUESTIONS = {
       medium: {
         multipleChoices: [
           {
-            id: "mem1",
+            id: "28",
             question:
               "Which of the following is a positive symptom of schizophrenia?",
             choices: {
@@ -492,7 +492,7 @@ export const DIAGNOSTIC_QUESTIONS = {
         multipleChoices: [],
         caseBased: [
           {
-            id: "mem1",
+            id: "29",
             question:
               'A patient says, "I feel like I\'m being watched all the time." What type of delusion is this?',
             choices: {
