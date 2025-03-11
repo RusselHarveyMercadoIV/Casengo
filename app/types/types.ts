@@ -22,6 +22,7 @@ export type comittmentsType = {
   "15 min / day": string;
   "30 min / day": string;
 };
+
 // Academic status types
 export type AcademicStatus =
   | "Freshman"
@@ -44,27 +45,27 @@ export type profilingDataType = {
 };
 
 // Base question structure
-type QuestionBase = {
+export type QuestionBase = {
   id: string;
   question: string;
   choices: { [key: string]: string }; // Flexible choices
 };
 
 // Specific question types
-type MultipleChoiceQuestion = QuestionBase & {
+export type MultipleChoiceQuestion = QuestionBase & {
   answer: string;
 };
 
-type CaseBasedQuestion = QuestionBase & {
+export type CaseBasedQuestion = QuestionBase & {
   answer: string;
 };
 
-type SequencingQuestion = QuestionBase & {
+export type SequencingQuestion = QuestionBase & {
   answer: string[];
 };
 
 // Difficulty level structure
-type DifficultyLevel = {
+export type DifficultyLevel = {
   multipleChoices: MultipleChoiceQuestion[];
   sata: never[]; // Could be removed if unused
   caseBased: CaseBasedQuestion[];
@@ -72,10 +73,23 @@ type DifficultyLevel = {
 };
 
 // Subject structure
-type SubjectType = {
+export type SubjectType = {
   easy: DifficultyLevel;
   medium: DifficultyLevel;
   hard: DifficultyLevel;
+};
+
+// Define difficultyLevel
+export type difficultyLevel = "easy" | "medium" | "hard";
+
+export type SelectedQuestion = {
+  id: string;
+  question: string;
+  choices: string[]; // Array of choice texts (e.g., ["To pump blood", "To exchange gases", ...])
+  answer: string | string[]; // String for multiple-choice/case-based, array for sequencing
+  type: "multipleChoices" | "sata" | "caseBased" | "sequencing"; // Question category
+  subject: string; // e.g., "anatomyAndPhysiology"
+  difficulty: "easy" | "medium" | "hard";
 };
 
 // Main quiz type
@@ -84,7 +98,7 @@ export type QuizType = {
   academicStatus: AcademicStatus;
 };
 
-type QuestionsType = {
+export type QuestionsType = {
   Freshman: {
     anatomyAndPhysiology: SubjectType;
     microbiology: SubjectType;
