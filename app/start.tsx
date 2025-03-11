@@ -13,11 +13,14 @@ import OrangeButton from "../assets/images/button-orange-1.png";
 import WhiteButton from "../assets/images/button-white-1.png";
 import Button from "@/components/button";
 import {
+  AcademicStatus,
   academicStatusesType,
   adNoticeType,
   comittmentsType,
   profilingDataType,
+  RootStackParamList,
 } from "./types/types";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 const profilingData: profilingDataType = {
   countryExam: "",
@@ -28,16 +31,26 @@ const profilingData: profilingDataType = {
   start: "",
 };
 
+import { DIAGNOSTIC_QUESTIONS } from "../constants/question-bank";
+
 export default function Start() {
   const { loading, isLoggedIn } = useGlobalContext();
   const [formData, setFormData] = useState<profilingDataType>(profilingData);
   const [currentStep, setCurrentStep] = useState<number>(0);
 
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
   if (!loading && isLoggedIn) return <Redirect href={"/"} />;
 
   const handleStepChange = (step: number) => {
-    if (currentStep === 6 && step > 0) return;
-    setCurrentStep((prevStep) => prevStep + step);
+    if (currentStep === 6 && step > 0) {
+      navigation.navigate("quiz", {
+        questions: DIAGNOSTIC_QUESTIONS,
+        academicStatus: formData.academicStatus as AcademicStatus,
+      });
+    } else {
+      setCurrentStep((prevStep) => prevStep + step);
+    }
   };
 
   const handleDataChange = (

@@ -3,7 +3,7 @@ import { TouchableOpacity, View } from "react-native";
 import PText from "./ui/ptext";
 
 type ButtonTypes = {
-  className: string;
+  className?: string;
   text: string;
   description?: string;
   subText?: string;

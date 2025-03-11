@@ -1,5 +1,5 @@
 export const DIAGNOSTIC_QUESTIONS = {
-  freshman: {
+  Freshman: {
     anatomyAndPhysiology: {
       easy: {
         multipleChoices: [
@@ -532,4 +532,8 @@ export const DIAGNOSTIC_QUESTIONS = {
       },
     },
   },
+  Sophomore: {},
+  Junior: {},
+  Senior: {},
+  "Recent Graduate": {},
 };

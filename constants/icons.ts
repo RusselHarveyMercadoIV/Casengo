@@ -46,6 +46,7 @@ import nursecap from "@/assets/icons/nursecap.png";
 import stethoscope from "@/assets/icons/stethoscope.png";
 import nurse from "@/assets/icons/nurse.png";
 import note from "@/assets/icons/note.png";
+import closebtn from "@/assets/icons/closebtn.png";
 
 export default {
   note,
@@ -96,4 +97,5 @@ export default {
   youtube,
   syringe,
   nursecap,
+  closebtn,
 };
