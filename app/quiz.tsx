@@ -41,15 +41,18 @@ export default function Quiz() {
             return (
               <View
                 key={subject}
-                id={subject}
-                className={`bg-[${color}] w-[15px] h-[15px] rounded-full opacity-40`}
+                className="w-[15px] h-[15px] rounded-full opacity-40"
+                style={{ backgroundColor: color }}
               />
             );
           })}
         </View>
       </View>
       <View className="flex justify-center items-center border border-2 border-[#cfd2da] w-[350px] h-[670px] mt-7 mb-3 rounded-3xl">
-        <View className="flex gap-6 h-[75%] px-8">
+        <View className="absolute top-1 right-1 bg-[#eefdf3] px-6 py-2 rounded-full">
+          <PText className="text-[#117b34]">Easy</PText>
+        </View>
+        <View className="flex gap-6 h-[70%] px-8 pt-2">
           <PText className="text-3xl text-[#323842]">
             Which of the following apply to meiosis
           </PText>
