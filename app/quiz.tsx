@@ -101,7 +101,8 @@ export default function Quiz() {
             className="w-full h-full"
           />
         </TouchableOpacity>
-        <View className="w-[280px] ml-10 h-[20px]">
+        {/* nodes */}
+        <View className="w-[270px] ml-10 h-[20px]">
           <Image
             className={"w-[10px] h-[10px] left-[2px] top-[22px] absolute"}
             source={icons.cursor}
