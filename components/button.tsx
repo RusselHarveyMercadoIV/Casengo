@@ -4,7 +4,7 @@ import PText from "./ui/ptext";
 
 type ButtonTypes = {
   className?: string;
-  text: string;
+  text?: string;
   description?: string;
   subText?: string;
   supText?: string;
@@ -43,29 +43,31 @@ export default function Button({
           </PText>
         )}
         {children}
-        <View className="flex gap-5">
-          <PText
-            className={`text-xl  line-30 font-[ABeeZee] ${
-              isHighlighted ? "text-[#ed7d2d]" : "text-[#323842]"
-            }`}
-            style={{
-              textShadowColor: shadowColor,
-              textShadowOffset: { width: 0, height: 0 },
-              textShadowRadius: 1,
-            }}
-          >
-            {text}
-          </PText>
-          {description && (
+        {text && (
+          <View className="flex gap-5">
             <PText
-              className={` ${
-                isHighlighted ? "text-[#ed7d2d]" : "text-[#9095a0]"
-              } `}
+              className={`text-xl  line-30 font-[ABeeZee] ${
+                isHighlighted ? "text-[#ed7d2d]" : "text-[#323842]"
+              }`}
+              style={{
+                textShadowColor: shadowColor,
+                textShadowOffset: { width: 0, height: 0 },
+                textShadowRadius: 1,
+              }}
             >
-              {description}
+              {text}
             </PText>
-          )}
-        </View>
+            {description && (
+              <PText
+                className={` ${
+                  isHighlighted ? "text-[#ed7d2d]" : "text-[#9095a0]"
+                } `}
+              >
+                {description}
+              </PText>
+            )}
+          </View>
+        )}
 
         {subText && (
           <PText
