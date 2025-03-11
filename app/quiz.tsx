@@ -133,8 +133,12 @@ export default function Quiz() {
       {/* Question Display */}
       {items.length > 0 && (
         <View className="flex justify-between py-8 items-center border border-2 border-[#cfd2da] w-[350px] h-[670px] mt-7 mb-3 rounded-3xl">
-          <View className="flex h-[80%] gap-10 px-8">
-            <PText className="text-2xl text-[#323842]">
+          <View
+            className={`flex ${
+              currentItem.type !== "multipleChoices" ? " h-[80%]" : ""
+            } px-8`}
+          >
+            <PText className="text-2xl mb-4 text-[#323842]">
               {currentItem.question}
             </PText>
             <ScrollView>
@@ -168,9 +172,9 @@ export default function Quiz() {
               </View>
             </ScrollView>
           </View>
-          <View className="flex justify-end items-center">
+          <View className="w-[290px]">
             {currentItem.type !== "multipleChoices" && (
-              <View className="flex gap-10 flex-row mb-10">
+              <View className="flex gap-10 flex-row mb-14">
                 <TouchableOpacity
                   className="px-6 py-5 rounded-2xl bg-[#f3f4f6]"
                   onPress={handleFinishQuestion}
@@ -185,7 +189,7 @@ export default function Quiz() {
                 </TouchableOpacity>
               </View>
             )}
-            <PText className="text-[#bcc1ca]">
+            <PText className="absolute bottom-0 right-0 text-[#bcc1ca]">
               {SubjectTitle[currentItem.subject as keyof SubjectColorsType]}
             </PText>
           </View>
