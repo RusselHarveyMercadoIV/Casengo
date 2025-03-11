@@ -1,10 +1,11 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { Image, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState, useEffect } from "react";
 import PText from "@/components/ui/ptext";
 import icons from "@/constants/icons";
 import { SelectedQuestion, SubjectColorsType } from "./types/types";
+import Button from "@/components/button";
 
 const SHOWN_NODES = 15;
 
@@ -80,14 +81,11 @@ export default function Quiz() {
     // Shuffle and select 15 questions
     // const shuffled = allQuestions.sort(() => 0.5 - Math.random());
     // const selected = shuffled.slice(0, 15);
-    console.log("allQuestions <>", allQuestions);
     setItems(allQuestions);
   }, [questions, academicStatus]);
 
   const currentItem = items[0];
   const total = items.length - SHOWN_NODES;
-
-  console.log("length <>", items.length);
 
   return (
     <SafeAreaView className="flex items-center bg-white h-full pt-5">
@@ -127,74 +125,71 @@ export default function Quiz() {
         </View>
 
         {total > 0 && (
-          <PText className="text-sm text-[#ed7d2d]">+{total}</PText>
+          <PText className="text-sm text-[#ed7d2d]"> +{total}</PText>
         )}
       </View>
 
       {/* Question Display */}
       {items.length > 0 && (
-        <View className="flex justify-center items-center border border-2 border-[#cfd2da] w-[350px] h-[670px] mt-7 mb-3 rounded-3xl">
-          <View className="absolute top-1 right-1 bg-[#eefdf3] px-6 py-2 rounded-full">
-            <PText className="text-[#117b34]">{currentItem.difficulty}</PText>
-          </View>
-          <View className="flex gap-6 h-[70%] px-8 pt-2">
-            <PText className="text-3xl text-[#323842]">
+        <View className="flex justify-between py-8 items-center border border-2 border-[#cfd2da] w-[350px] h-[670px] mt-7 mb-3 rounded-3xl">
+          <View className="flex h-[80%] gap-10 px-8">
+            <PText className="text-2xl text-[#323842]">
               {currentItem.question}
             </PText>
-            <View className="flex gap-5 mt-3 ">
-              {currentItem.type === "sequencing" ? (
-                // Sequencing UI (placeholder)
-                <View>
-                  {currentItem.choices.map((choice, index) => (
-                    <PText key={index} className="text-lg text-[#565e6c] p-2">
-                      {choice}
+            <ScrollView>
+              <View className="flex gap-5 mt-3 w-[290px]">
+                {currentItem.type === "sequencing" ? (
+                  // Sequencing UI
+                  <View>
+                    {currentItem.choices.map((choice, index) => (
+                      <PText key={index} className="text-lg text-[#565e6c] p-2">
+                        {choice}
+                      </PText>
+                    ))}
+                    <PText className="text-sm text-gray-500 mt-2">
+                      (Arrange these steps in the correct order)
                     </PText>
-                  ))}
-                  <PText className="text-sm text-gray-500 mt-2">
-                    (Arrange these steps in the correct order)
-                  </PText>
-                </View>
-              ) : (
-                // Multiple-choice or case-based UI
-                currentItem.choices.map((choice, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    className="bg-[#f3f4f6] py-6 px-4 rounded-xl w-full"
-                    onPress={handleFinishQuestion}
-                  >
-                    <PText className="text-lg text-center text-[#565e6c]">
-                      {choice}
-                    </PText>
-                  </TouchableOpacity>
-                ))
-              )}
-            </View>
+                  </View>
+                ) : (
+                  // Multiple-choice or case-based UI
+                  currentItem.choices.map((choice, index) => (
+                    <Button
+                      key={index}
+                      className="py-6 px-4 rounded-xl w-full"
+                      onPress={handleFinishQuestion}
+                    >
+                      <PText className="text-lg text-center text-[#565e6c]">
+                        {choice}
+                      </PText>
+                    </Button>
+                  ))
+                )}
+              </View>
+            </ScrollView>
           </View>
-          <View className="flex justify-end items-center h-[20%]">
-            <View className="flex gap-10 flex-row mb-10">
-              <TouchableOpacity
-                className="px-5 py-6 rounded-2xl bg-[#f3f4f6]"
-                onPress={handleFinishQuestion}
-              >
-                <PText className="text-xl text-[#565e6c]">I don't know</PText>
-              </TouchableOpacity>
-              <TouchableOpacity
-                className={`border border-1 border-[#ed7d2d] px-10 py-6 rounded-2xl ${
-                  currentItem.type === "multipleChoices" && "opacity-30"
-                }`}
-                disabled={currentItem.type === "multipleChoices"}
-                onPress={handleFinishQuestion}
-              >
-                <PText className="text-xl text-[#ed7d2d]">Confirm</PText>
-              </TouchableOpacity>
-            </View>
+          <View className="flex justify-end items-center">
+            {currentItem.type !== "multipleChoices" && (
+              <View className="flex gap-10 flex-row mb-10">
+                <TouchableOpacity
+                  className="px-6 py-5 rounded-2xl bg-[#f3f4f6]"
+                  onPress={handleFinishQuestion}
+                >
+                  <PText className="text-xl text-[#565e6c]">I don't know</PText>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  className="border border-1 border-[#ed7d2d] px-6 py-5 rounded-2xl"
+                  onPress={handleFinishQuestion}
+                >
+                  <PText className="text-xl text-[#ed7d2d]">Confirm</PText>
+                </TouchableOpacity>
+              </View>
+            )}
             <PText className="text-[#bcc1ca]">
               {SubjectTitle[currentItem.subject as keyof SubjectColorsType]}
             </PText>
           </View>
         </View>
       )}
-
       {/* Footer */}
       <View className="flex flex-row justify-around w-[350px] opacity-70">
         <TouchableOpacity className="px-5 py-3 rounded-2xl bg-[#ed7d2d]">
