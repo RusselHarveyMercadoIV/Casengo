@@ -22,7 +22,11 @@ export default function Quiz() {
           }}
           className="absolute left-0 w-[22px] h-[22px]"
         >
-          <Image source={icons.closebtn} className="w-full h-full" />
+          <Image
+            source={icons.closebtn}
+            style={{ tintColor: "#323842" }} // Set your desired color here
+            className="w-full h-full"
+          />
         </TouchableOpacity>
         <View className="flex flex-row gap-1 ">
           {Object.keys(level).map((subject) => {
