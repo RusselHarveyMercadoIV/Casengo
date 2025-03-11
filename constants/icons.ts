@@ -47,6 +47,7 @@ import stethoscope from "@/assets/icons/stethoscope.png";
 import nurse from "@/assets/icons/nurse.png";
 import note from "@/assets/icons/note.png";
 import closebtn from "@/assets/icons/closebtn.png";
+import cursor from "@/assets/icons/cursor.png";
 
 export default {
   note,
@@ -98,4 +99,5 @@ export default {
   syringe,
   nursecap,
   closebtn,
+  cursor,
 };

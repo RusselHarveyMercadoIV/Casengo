@@ -10,7 +10,6 @@ const SHOWN_NODES = 15;
 
 export default function Quiz() {
   const [items, setItems] = useState<SelectedQuestion[]>([]);
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const navigation = useNavigation();
   const route = useRoute<any>(); // Assuming route params include questions and academicStatus
@@ -25,6 +24,21 @@ export default function Quiz() {
     maternalAndChildHealthNursing: "#de3b40",
     medicalSurgicalNursing: "#00bdd6",
     psychiatricNursing: "#efb034",
+  };
+
+  const SubjectTitle = {
+    anatomyAndPhysiology: "Anamoty & Physiology",
+    microbiology: "Microbiology",
+    fundamentalsOfNursing: "Fundamentals of Nursing",
+    pharmacology: "Pharmacology",
+    communityHealthNursing: "Community Health Nursing",
+    maternalAndChildHealthNursing: "Maternal & Child Health Nursing",
+    medicalSurgicalNursing: "Medical Surgical Nursing",
+    psychiatricNursing: "Psychiatric Nursing",
+  };
+
+  const handleFinishQuestion = () => {
+    setItems((prevItems) => prevItems.slice(1));
   };
 
   useEffect(() => {
@@ -66,10 +80,14 @@ export default function Quiz() {
     // Shuffle and select 15 questions
     // const shuffled = allQuestions.sort(() => 0.5 - Math.random());
     // const selected = shuffled.slice(0, 15);
+    console.log("allQuestions <>", allQuestions);
     setItems(allQuestions);
   }, [questions, academicStatus]);
 
-  const currentItem = items[currentIndex];
+  const currentItem = items[0];
+  const total = items.length - SHOWN_NODES;
+
+  console.log("length <>", items.length);
 
   return (
     <SafeAreaView className="flex items-center bg-white h-full pt-5">
@@ -85,25 +103,36 @@ export default function Quiz() {
             className="w-full h-full"
           />
         </TouchableOpacity>
-        <View className="flex flex-row gap-1 items-center pl-10 border-r-[4px] border-[#ed7d2d] h-[20px] w-[300px] overflow-hidden">
-          {items.map((item, index) => (
-            <View
-              key={index}
-              className="w-[15px] h-[15px] rounded-full opacity-40"
-              style={{
-                backgroundColor:
-                  SubjectColors[item.subject as keyof SubjectColorsType],
-              }}
-            />
-          ))}
+        <View className="w-[280px] ml-10 h-[20px]">
+          <Image
+            className={"w-[10px] h-[10px] left-[2px] top-[22px] absolute"}
+            source={icons.cursor}
+          />
+          <View
+            className={`flex flex-row gap-1 items-center  ${
+              total > 0 && "border-r-[4px] border-[#ed7d2d]"
+            }  h-full w-full overflow-hidden`}
+          >
+            {items.map((item, index) => (
+              <View
+                key={index}
+                className="w-[15px] h-[15px] rounded-full opacity-40"
+                style={{
+                  backgroundColor:
+                    SubjectColors[item.subject as keyof SubjectColorsType],
+                }}
+              />
+            ))}
+          </View>
         </View>
-        <PText className="text-sm text-[#ed7d2d]">
-          +{items.length - SHOWN_NODES}
-        </PText>
+
+        {total > 0 && (
+          <PText className="text-sm text-[#ed7d2d]">+{total}</PText>
+        )}
       </View>
 
       {/* Question Display */}
-      {items.length > 0 && currentIndex < items.length && (
+      {items.length > 0 && (
         <View className="flex justify-center items-center border border-2 border-[#cfd2da] w-[350px] h-[670px] mt-7 mb-3 rounded-3xl">
           <View className="absolute top-1 right-1 bg-[#eefdf3] px-6 py-2 rounded-full">
             <PText className="text-[#117b34]">{currentItem.difficulty}</PText>
@@ -130,7 +159,8 @@ export default function Quiz() {
                 currentItem.choices.map((choice, index) => (
                   <TouchableOpacity
                     key={index}
-                    className="bg-[#f3f4f6] py-6 px-4 rounded-xl"
+                    className="bg-[#f3f4f6] py-6 px-4 rounded-xl w-full"
+                    onPress={handleFinishQuestion}
                   >
                     <PText className="text-lg text-center text-[#565e6c]">
                       {choice}
@@ -142,7 +172,10 @@ export default function Quiz() {
           </View>
           <View className="flex justify-end items-center h-[20%]">
             <View className="flex gap-10 flex-row mb-10">
-              <TouchableOpacity className="px-5 py-6 rounded-2xl bg-[#f3f4f6]">
+              <TouchableOpacity
+                className="px-5 py-6 rounded-2xl bg-[#f3f4f6]"
+                onPress={handleFinishQuestion}
+              >
                 <PText className="text-xl text-[#565e6c]">I don't know</PText>
               </TouchableOpacity>
               <TouchableOpacity
@@ -150,11 +183,14 @@ export default function Quiz() {
                   currentItem.type === "multipleChoices" && "opacity-30"
                 }`}
                 disabled={currentItem.type === "multipleChoices"}
+                onPress={handleFinishQuestion}
               >
                 <PText className="text-xl text-[#ed7d2d]">Confirm</PText>
               </TouchableOpacity>
             </View>
-            <PText className="text-[#bcc1ca]">{currentItem.subject}</PText>
+            <PText className="text-[#bcc1ca]">
+              {SubjectTitle[currentItem.subject as keyof SubjectColorsType]}
+            </PText>
           </View>
         </View>
       )}
