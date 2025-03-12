@@ -115,7 +115,7 @@ export default function Quiz() {
             {items.map((item, index) => (
               <View
                 key={index}
-                className="w-[15px] h-[15px] rounded-full opacity-40"
+                className="w-[15px] h-[15px] rounded-full opacity-50"
                 style={{
                   backgroundColor:
                     SubjectColors[item.subject as keyof SubjectColorsType],
@@ -132,17 +132,16 @@ export default function Quiz() {
 
       {/* Question Display */}
       {items.length > 0 && (
-        <View className="flex justify-between py-8 items-center border border-2 border-[#cfd2da] w-[350px] h-[670px] mt-7 mb-3 rounded-3xl">
-          <View
-            className={`flex ${
-              currentItem.type !== "multipleChoices" ? " h-[80%]" : ""
-            } px-8`}
-          >
-            <PText className="text-2xl mb-4 text-[#323842]">
+        <View className="flex bg-white justify-between py-8 items-center w-[350px] h-[680px] mt-7 mb-3 rounded-3xl">
+          <View className={`flex flex-1 px-8 `}>
+            <PText className="text-2xl pb-4 text-[#323842]">
               {currentItem.question}
             </PText>
-            <ScrollView>
-              <View className="flex gap-5 mt-3 w-[290px]">
+            <ScrollView
+              className="flex-1"
+              contentContainerClassName="flex h-[420px] justify-center "
+            >
+              <View className="flex gap-5 w-[290px] ">
                 {currentItem.type === "sequencing" ? (
                   // Sequencing UI
                   <View>
@@ -172,9 +171,9 @@ export default function Quiz() {
               </View>
             </ScrollView>
           </View>
-          <View className="w-[290px]">
+          <View className="w-[290px] flex-none pt-4 ">
             {currentItem.type !== "multipleChoices" && (
-              <View className="flex gap-10 flex-row mb-14">
+              <View className="flex gap-10 flex-row mb-10">
                 <TouchableOpacity
                   className="px-6 py-5 rounded-2xl bg-[#f3f4f6]"
                   onPress={handleFinishQuestion}
