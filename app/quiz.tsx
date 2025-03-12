@@ -171,7 +171,7 @@ export default function Quiz() {
               </View>
             </ScrollView>
           </View>
-          <View className="w-[290px] flex-none pt-4 ">
+          <View className="flex items-center w-[290px] flex-none pt-4 ">
             {currentItem.type !== "multipleChoices" && (
               <View className="flex gap-10 flex-row mb-10">
                 <TouchableOpacity
@@ -188,7 +188,7 @@ export default function Quiz() {
                 </TouchableOpacity>
               </View>
             )}
-            <PText className="absolute bottom-0 right-0 text-[#bcc1ca]">
+            <PText className=" text-[#bcc1ca]">
               {SubjectTitle[currentItem.subject as keyof SubjectColorsType]}
             </PText>
           </View>
