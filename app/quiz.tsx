@@ -7,7 +7,7 @@ import icons from "@/constants/icons";
 import { SelectedQuestion, SubjectColorsType } from "./types/types";
 import Button from "@/components/button";
 
-const SHOWN_NODES = 15;
+const SHOWN_NODES = 17;
 
 export default function Quiz() {
   const [items, setItems] = useState<SelectedQuestion[]>([]);
@@ -100,7 +100,7 @@ export default function Quiz() {
       <View className="flex w-[340px] flex-row justify-center items-center">
         <TouchableOpacity
           onPress={() => navigation.goBack()}
-          className="absolute left-0 w-[22px] h-[22px]"
+          className="absolute left-0 w-[20px] h-[20px]"
         >
           <Image
             source={icons.closebtn}
@@ -111,7 +111,7 @@ export default function Quiz() {
         {/* nodes */}
         <View className="w-[270px] ml-10 h-[20px]">
           <Image
-            className={"w-[10px] h-[10px] left-[2px] top-[22px] absolute"}
+            className={"w-[10px] h-[10px] left-[1.5px] top-[22px] absolute"}
             source={icons.cursor}
           />
           <View
@@ -122,7 +122,7 @@ export default function Quiz() {
             {items.map((item, index) => (
               <View
                 key={index}
-                className="w-[15px] h-[15px] rounded-full opacity-50"
+                className="w-[12px] h-[12px] rounded-full opacity-50"
                 style={{
                   backgroundColor:
                     SubjectColors[item.subject as keyof SubjectColorsType],
