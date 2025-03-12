@@ -27,6 +27,13 @@ export default function Quiz() {
     psychiatricNursing: "#efb034",
   };
 
+  const QuestionType = {
+    multipleChoices: "Multiple choices",
+    caseBased: "Case based",
+    sata: "SATA",
+    sequencing: "Sequencing",
+  };
+
   const SubjectTitle = {
     anatomyAndPhysiology: "Anamoty & Physiology",
     microbiology: "Microbiology",
@@ -132,16 +139,16 @@ export default function Quiz() {
 
       {/* Question Display */}
       {items.length > 0 && (
-        <View className="flex bg-white justify-between py-8 items-center w-[350px] h-[680px] mt-7 mb-3 rounded-3xl">
-          <View className={`flex flex-1 px-8 `}>
+        <View className="flex bg-white justify-between py-8 items-center w-[370px] h-[665px] mt-7 mb-3 rounded-3xl">
+          <View className={`flex flex-1 px-8`}>
             <PText className="text-2xl pb-4 text-[#323842]">
               {currentItem.question}
             </PText>
             <ScrollView
               className="flex-1"
-              contentContainerClassName="flex h-[420px] justify-center "
+              contentContainerClassName="flex h-[420px] w-full items-center justify-center "
             >
-              <View className="flex gap-5 w-[290px] ">
+              <View className="flex gap-5 w-[300px] ">
                 {currentItem.type === "sequencing" ? (
                   // Sequencing UI
                   <View>
@@ -171,7 +178,7 @@ export default function Quiz() {
               </View>
             </ScrollView>
           </View>
-          <View className="flex items-center w-[290px] flex-none pt-4 ">
+          <View className="flex items-center w-[300px] flex-none pt-4 ">
             {currentItem.type !== "multipleChoices" && (
               <View className="flex gap-10 flex-row mb-10">
                 <TouchableOpacity
@@ -188,9 +195,16 @@ export default function Quiz() {
                 </TouchableOpacity>
               </View>
             )}
-            <PText className=" text-[#bcc1ca]">
-              {SubjectTitle[currentItem.subject as keyof SubjectColorsType]}
-            </PText>
+            <View className="w-full flex flex-row justify-between items-center border-t border-[#bcc1ca] pt-2">
+              {/* <View className="bg-[#eefdf3] p-1 rounded-full"> */}
+              <PText className="text-[#bcc1ca] text-sm">
+                {QuestionType[currentItem.type]}
+              </PText>
+              {/* </View> */}
+              <PText className=" text-[#bcc1ca] text-sm">
+                {SubjectTitle[currentItem.subject as keyof SubjectColorsType]}
+              </PText>
+            </View>
           </View>
         </View>
       )}
@@ -203,7 +217,7 @@ export default function Quiz() {
           <PText className="text-md text-white">night/day</PText>
         </TouchableOpacity>
         <TouchableOpacity className="px-5 py-3 rounded-2xl bg-[#171a1f]">
-          <PText className="text-md text-white">Bug</PText>
+          <PText className="text-md text-white">Report</PText>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
