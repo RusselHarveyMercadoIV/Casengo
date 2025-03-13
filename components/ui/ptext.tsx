@@ -1,16 +1,21 @@
 import { Text, TextProps } from "react-native";
-import React from "react";
+import React, { forwardRef } from "react";
 
 interface PTextProps extends TextProps {
   children: React.ReactNode;
 }
 
-const PText = ({ children, ...props }: PTextProps) => {
+// Use forwardRef to pass the ref to the Text component
+const PText = forwardRef<Text, PTextProps>(({ children, ...props }, ref) => {
   return (
-    <Text {...props} style={[{ fontFamily: "ABeeZee-Regular" }, props.style]}>
+    <Text
+      ref={ref} // Forward the ref here
+      {...props}
+      style={[{ fontFamily: "ABeeZee-Regular" }, props.style]}
+    >
       {children}
     </Text>
   );
-};
+});
 
 export default PText;

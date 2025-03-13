@@ -3,6 +3,8 @@ import "./global.css";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import GlobalProvider from "@/lib/global-provider";
+import { DraxProvider } from "react-native-drax";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -21,12 +23,16 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
 
   return (
-    <GlobalProvider>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      />
-    </GlobalProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <GlobalProvider>
+        <DraxProvider>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+            }}
+          />
+        </DraxProvider>
+      </GlobalProvider>
+    </GestureHandlerRootView>
   );
 }
